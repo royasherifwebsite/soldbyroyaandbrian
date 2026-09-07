@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roya Sells SoCal | Southern California Real Estate</title>
+<meta name="description" content="Roya Sherif — Southern California real estate agent. Buy, sell and explore homes across San Diego, Escondido, Rancho Bernardo, Ramona and North County with a personalized, strategy-driven approach.">
+<meta name="theme-color" content="#111111">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Roya Sells SoCal | Southern California Real Estate">
+<meta property="og:description" content="Helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="royasellssocalpfp.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome (light use: icons for search UI, socials) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --cream:#F7F5F1;
+    --ink:#111111;
+    --charcoal:#252525;
+    --taupe:#C9B9A6;
+    --champagne:#B69A72;
+    --white:#FFFFFF;
+    --line: rgba(17,17,17,0.1);
+    --line-light: rgba(255,255,255,0.14);
+
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --container: 1240px;
+    --pad: clamp(24px, 5vw, 80px);
+
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  body{
+    margin:0;
+    font-family:var(--sans);
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; }
+  input,select,textarea{ font-family:inherit; }
+
+  .wrap{ max-width:var(--container); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad); }
+
+  ::selection{ background:var(--champagne); color:var(--white); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--champagne);
+    outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--champagne);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--champagne);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:var(--serif);
+    font-weight:500;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:.005em;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:16px 34px;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:600;
+    border-radius:2px;
+    border:1px solid transparent;
+    transition:all .35s var(--ease);
+    white-space:nowrap;
+  }
+  .btn-dark{ background:var(--ink); color:var(--white); }
+  .btn-dark:hover{ background:var(--champagne); }
+  .btn-outline{ background:transparent; color:var(--ink); border-color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:var(--white); }
+  .btn-outline-light{ background:transparent; color:var(--white); border-color:var(--line-light); }
+  .btn-outline-light:hover{ background:var(--white); color:var(--ink); }
+  .btn-champagne{ background:var(--champagne); color:var(--white); }
+  .btn-champagne:hover{ background:var(--ink); }
+  .btn-block{ width:100%; }
+
+  /* ============ REVEAL ============ */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(22px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal-stagger.in > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.in > *:nth-child(1){ transition-delay:.05s; }
+  .reveal-stagger.in > *:nth-child(2){ transition-delay:.15s; }
+  .reveal-stagger.in > *:nth-child(3){ transition-delay:.25s; }
+  .reveal-stagger.in > *:nth-child(4){ transition-delay:.35s; }
+
+  /* ============ HEADER ============ */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    background:rgba(247,245,241,0);
+    border-bottom:1px solid transparent;
+    transition:background .4s var(--ease), border-color .4s var(--ease), padding .4s var(--ease);
+  }
+  header.scrolled{
+    background:rgba(247,245,241,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:26px; padding-bottom:26px;
+    transition:padding .4s var(--ease);
+  }
+  header.scrolled .header-inner{ padding-top:16px; padding-bottom:16px; }
+
+  .wordmark{ display:flex; flex-direction:column; line-height:1; }
+  .wordmark .l1{ font-family:var(--serif); font-size:24px; letter-spacing:.06em; font-weight:600; }
+  .wordmark .l2{ font-family:var(--sans); font-size:9.5px; letter-spacing:.32em; color:var(--champagne); font-weight:600; margin-top:5px; }
+
+  nav.primary-nav{ display:flex; align-items:center; gap:40px; }
+  nav.primary-nav a{
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:500;
+    position:relative; padding:4px 0;
+  }
+  nav.primary-nav a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--champagne);
+    transition:width .3s var(--ease);
+  }
+  nav.primary-nav a:hover::after{ width:100%; }
+
+  .header-cta{ display:flex; align-items:center; gap:22px; }
+
+  .hamburger{
+    display:none; flex-direction:column; justify-content:center; gap:5px;
+    width:30px; height:30px; background:none; border:none; padding:0; z-index:1200;
+  }
+  .hamburger span{ display:block; width:100%; height:1px; background:var(--ink); transition:all .35s var(--ease); }
+  .hamburger.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2){ opacity:0; }
+  .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  .mobile-nav{
+    position:fixed; inset:0; background:var(--cream); z-index:1100;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:34px;
+    opacity:0; visibility:hidden; transform:translateY(-12px);
+    transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s;
+  }
+  .mobile-nav.open{ opacity:1; visibility:visible; transform:translateY(0); }
+  .mobile-nav a{ font-family:var(--serif); font-size:30px; }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    display:grid; grid-template-columns:1fr 1fr;
+    min-height:100vh;
+    padding-top:0;
+  }
+  .hero-copy{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:150px var(--pad) 70px clamp(24px,6vw,90px);
+    max-width:640px;
+  }
+  .hero-copy h1{
+    font-size:clamp(42px, 5.6vw, 74px);
+    margin-top:22px;
+    color:var(--ink);
+  }
+  .hero-copy h1 em{ font-style:italic; color:var(--champagne); }
+  .hero-sub{
+    font-size:16.5px; line-height:1.7; color:var(--charcoal); opacity:.85;
+    margin:26px 0 36px; max-width:460px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:44px; }
+  .hero-badge{
+    display:flex; align-items:center; gap:16px;
+    border-top:1px solid var(--line); padding-top:22px; max-width:400px;
+  }
+  .hero-badge .num{ font-family:var(--serif); font-size:34px; color:var(--champagne); line-height:1; }
+  .hero-badge .txt{ font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; line-height:1.5; color:var(--charcoal); font-weight:600; }
+
+  .hero-media{
+    position:relative;
+    background:linear-gradient(155deg,#2a2622 0%, #3d362d 45%, #6b5c48 100%);
+    overflow:hidden;
+  }
+  .hero-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 18%;
+    position:absolute;
+    inset:0;
+    z-index:1;
+    filter:saturate(.96) contrast(1.02);
+  }
+  .hero-media .fallback-mark{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:0;
+    flex-direction:column; gap:14px; color:rgba(255,255,255,.55);
+  }
+  .hero-media .fallback-mark i{ font-size:44px; }
+  .hero-media .fallback-mark span{ font-family:var(--serif); font-style:italic; font-size:18px; letter-spacing:.04em; }
+  .hero-media .veil{
+    position:absolute; inset:0; z-index:2;
+    background:linear-gradient(0deg, rgba(17,17,17,.38) 0%, rgba(17,17,17,.03) 48%, rgba(17,17,17,.05) 100%);
+    pointer-events:none;
+  }
+  .hero-caption{
+    position:absolute; left:36px; bottom:34px; color:var(--white); z-index:3;
+  }
+  .hero-caption .l1{ font-family:var(--serif); font-style:italic; font-size:22px; }
+  .hero-caption .l2{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; opacity:.8; margin-top:4px; }
+
+  /* ============ SEARCH BAR ============ */
+  .search-section{ position:relative; margin-top:-46px; z-index:50; }
+  .search-card{
+    background:var(--white);
+    box-shadow:0 24px 60px -20px rgba(17,17,17,.18);
+    border:1px solid var(--line);
+    padding:28px;
+    display:grid;
+    grid-template-columns: 1.6fr 1fr 1fr .8fr .8fr auto;
+    gap:18px;
+    align-items:end;
+  }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field label{ font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--charcoal); opacity:.7; }
+  .field input, .field select{
+    border:none; border-bottom:1px solid var(--line); background:transparent;
+    padding:8px 2px; font-size:14.5px; color:var(--ink);
+  }
+  .field input::placeholder{ color:#9a9488; }
+  .field input:focus, .field select:focus{ border-bottom-color:var(--champagne); outline:none; }
+  .search-msg{
+    max-width:var(--container); margin:16px auto 0; padding-left:var(--pad); padding-right:var(--pad);
+    font-size:13px; color:var(--champagne); font-weight:600; letter-spacing:.02em;
+    opacity:0; transform:translateY(-6px); transition:opacity .4s var(--ease), transform .4s var(--ease);
+    display:flex; align-items:center; gap:8px;
+  }
+  .search-msg.show{ opacity:1; transform:translateY(0); }
+
+  /* ============ SECTION SPACING ============ */
+  section{ padding:120px 0; }
+  .section-head{ max-width:640px; margin-bottom:64px; }
+  .section-head h2{ font-size:clamp(32px,3.6vw,48px); margin-top:18px; }
+  .section-head p{ font-size:16px; line-height:1.7; color:var(--charcoal); opacity:.8; margin-top:18px; max-width:520px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+
+  /* ============ PROPERTIES ============ */
+  .prop-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .prop-card{
+    background:var(--white); border:1px solid var(--line);
+    transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+  }
+  .prop-card:hover{ transform:translateY(-6px); box-shadow:0 30px 50px -30px rgba(17,17,17,.25); }
+  .prop-media{ position:relative; aspect-ratio:4/3; overflow:hidden; background:#e7e1d6; }
+  .prop-media img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+  .prop-card:hover .prop-media img{ transform:scale(1.06); }
+  .prop-tag{
+    position:absolute; top:16px; left:16px; background:var(--ink); color:var(--white);
+    font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; padding:7px 12px; font-weight:600;
+  }
+  .prop-body{ padding:26px; }
+  .prop-price{ font-family:var(--serif); font-size:28px; color:var(--ink); }
+  .prop-loc{ font-size:13px; color:var(--charcoal); opacity:.75; margin-top:6px; letter-spacing:.01em; }
+  .prop-specs{ display:flex; gap:18px; margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
+  .prop-specs span{ font-size:12.5px; color:var(--charcoal); display:flex; align-items:center; gap:6px; }
+  .prop-specs i{ color:var(--champagne); font-size:12px; }
+  .demo-note{ text-align:center; font-size:11.5px; color:var(--charcoal); opacity:.55; margin-top:20px; letter-spacing:.02em; }
+  .center-cta{ display:flex; justify-content:center; margin-top:56px; }
+
+  /* ============ BUY / SELL ============ */
+  .split{ display:grid; grid-template-columns:1fr 1fr; }
+  .split-panel{
+    padding:100px clamp(28px,6vw,80px);
+    display:flex; flex-direction:column; justify-content:center;
+    min-height:440px;
+    position:relative;
+  }
+  .split-panel.dark{ background:var(--ink); color:var(--white); }
+  .split-panel.light{ background:var(--taupe); color:var(--ink); }
+  .split-panel h3{ font-size:clamp(28px,3vw,38px); margin-top:16px; }
+  .split-panel p{ font-size:15.5px; line-height:1.7; margin:18px 0 30px; opacity:.85; max-width:380px; }
+
+  /* ============ VALUATION ============ */
+  .valuation{ background:var(--charcoal); color:var(--white); }
+  .val-grid{ display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+  .val-copy h2{ color:var(--white); font-size:clamp(32px,3.6vw,46px); margin-top:18px; }
+  .val-copy p{ font-size:16px; line-height:1.7; opacity:.75; margin-top:20px; max-width:420px; }
+  .val-stats{ display:flex; gap:44px; margin-top:40px; }
+  .val-stats .num{ font-family:var(--serif); font-size:32px; color:var(--champagne); }
+  .val-stats .lab{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; opacity:.65; margin-top:4px; }
+  .val-form{ background:var(--white); color:var(--ink); padding:44px; }
+  .val-form .field{ margin-bottom:20px; }
+  .val-form .field label{ opacity:.6; }
+  .form-success{
+    display:none; text-align:center; padding:30px 10px;
+  }
+  .form-success.show{ display:block; }
+  .form-success i{ font-size:30px; color:var(--champagne); margin-bottom:14px; display:block; }
+  .form-success h4{ font-family:var(--serif); font-size:24px; margin:0 0 8px; }
+  .form-success p{ font-size:14px; opacity:.7; margin:0; }
+
+  /* ============ ABOUT ============ */
+  .about-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:70px; align-items:center; }
+  .about-media{
+    position:relative; aspect-ratio:3/4;
+    background:linear-gradient(155deg,#3d362d 0%, #6b5c48 100%);
+    overflow:hidden;
+  }
+  .about-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 16%;
+    position:absolute;
+    inset:0;
+    z-index:1;
+    filter:saturate(.96) contrast(1.02);
+  }
+  .about-media .fallback-mark{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:0; flex-direction:column; gap:12px; color:rgba(255,255,255,.5);
+  }
+  .about-media .fallback-mark i{ font-size:36px; }
+  .about-copy p{ font-size:16.5px; line-height:1.8; color:var(--charcoal); margin:22px 0 12px; max-width:520px; }
+  .about-copy .tags{ display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 34px; }
+  .about-copy .tags span{
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--line);
+    padding:8px 14px; color:var(--charcoal);
+  }
+  .about-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .stars-row{ display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+  .stars-row .stars{ color:var(--champagne); font-size:14px; letter-spacing:2px; }
+  .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .t-card{ background:var(--cream); padding:36px 30px; border:1px solid var(--line); }
+  .t-card .stars{ color:var(--champagne); font-size:12px; letter-spacing:2px; margin-bottom:18px; display:block; }
+  .t-card p{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.55; color:var(--ink); margin:0 0 24px; }
+  .t-name{ font-size:12px; font-weight:600; letter-spacing:.03em; }
+  .t-loc{ font-size:11.5px; color:var(--charcoal); opacity:.6; margin-top:2px; }
+
+  /* ============ AREAS ============ */
+  .areas-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
+  .area-card{
+    background:var(--ink); color:var(--white); aspect-ratio:4/3;
+    display:flex; align-items:flex-end; padding:26px;
+    position:relative; overflow:hidden; cursor:pointer;
+    transition:background .4s var(--ease);
+  }
+  .area-card::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(155deg, rgba(182,154,114,.35), rgba(17,17,17,.55));
+    opacity:.6; transition:opacity .4s var(--ease);
+  }
+  .area-card:hover::before{ opacity:.9; }
+  .area-card span{ position:relative; font-family:var(--serif); font-size:23px; z-index:2; }
+  .area-card i{ position:absolute; top:22px; right:22px; opacity:0; transform:translateX(-6px); transition:all .35s var(--ease); z-index:2; font-size:13px; }
+  .area-card:hover i{ opacity:.85; transform:translateX(0); }
+
+  /* ============ CONSULTATION CTA ============ */
+  .cta-final{
+    background:var(--ink); color:var(--white); text-align:center;
+    padding:150px var(--pad);
+  }
+  .cta-final .eyebrow{ justify-content:center; }
+  .cta-final h2{ color:var(--white); font-size:clamp(36px,5vw,60px); margin-top:20px; max-width:760px; margin-left:auto; margin-right:auto; }
+  .cta-final p{ font-size:16.5px; opacity:.7; max-width:480px; margin:22px auto 40px; line-height:1.7; }
+  .cta-final .btns{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+
+  /* ============ CONTACT ============ */
+  .contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; }
+  .contact-info h2{ font-size:clamp(30px,3.4vw,42px); margin-top:18px; }
+  .contact-info p{ font-size:15.5px; line-height:1.75; color:var(--charcoal); opacity:.8; margin:20px 0 34px; max-width:400px; }
+  .contact-detail{ display:flex; gap:14px; align-items:flex-start; margin-bottom:22px; }
+  .contact-detail i{ color:var(--champagne); margin-top:3px; }
+  .contact-detail .lab{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; opacity:.55; font-weight:600; }
+  .contact-detail .val{ font-size:14.5px; margin-top:3px; }
+  .contact-form{ background:var(--white); border:1px solid var(--line); padding:44px; }
+  .contact-form .field{ margin-bottom:20px; }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+  /* ============ INSTAGRAM ============ */
+  .ig-section{ background:var(--cream); }
+  .ig-head{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:44px; }
+  .ig-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:6px; }
+  .ig-cell{
+    aspect-ratio:1; overflow:hidden; position:relative;
+    background:linear-gradient(155deg,#2a2622,#6b5c48);
+  }
+  .ig-cell img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease); }
+  .ig-cell:hover img{ transform:scale(1.08); }
+  .ig-cell::after{ content:"\f16d"; font-family:"Font Awesome 6 Brands"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#fff; opacity:0; transition:opacity .3s; background:rgba(17,17,17,.35); font-size:20px; }
+  .ig-cell:hover::after{ opacity:1; }
+
+  /* ============ FOOTER ============ */
+  footer{ background:var(--ink); color:rgba(255,255,255,.65); padding-top:90px; }
+  .footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:50px; padding-bottom:70px; border-bottom:1px solid var(--line-light); }
+  .footer-brand .wordmark .l1{ color:var(--white); }
+  .footer-brand p{ font-size:13.5px; line-height:1.7; margin-top:18px; max-width:280px; opacity:.6; }
+  .footer-social{ display:flex; gap:14px; margin-top:22px; }
+  .footer-social a{ width:36px; height:36px; border:1px solid var(--line-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; transition:all .3s; }
+  .footer-social a:hover{ background:var(--champagne); border-color:var(--champagne); color:var(--white); }
+  .footer-col h4{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--white); margin-bottom:20px; font-weight:600; }
+  .footer-col a{ display:block; font-size:14px; margin-bottom:12px; opacity:.65; transition:opacity .2s; }
+  .footer-col a:hover{ opacity:1; }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding:30px 0; font-size:12px; flex-wrap:wrap; gap:10px; }
+  .footer-bottom .legal{ display:flex; gap:24px; }
+  .footer-note{ text-align:center; font-size:11px; opacity:.4; padding-bottom:26px; letter-spacing:.02em; }
+
+  /* ============ SCROLL TOP ============ */
+  .scroll-top{
+    position:fixed; right:26px; bottom:26px; z-index:900;
+    width:46px; height:46px; border-radius:50%; background:var(--ink); color:var(--white);
+    display:flex; align-items:center; justify-content:center; border:none;
+    opacity:0; visibility:hidden; transform:translateY(10px);
+    transition:all .35s var(--ease);
+  }
+  .scroll-top.show{ opacity:1; visibility:visible; transform:translateY(0); }
+  .scroll-top:hover{ background:var(--champagne); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1080px){
+    .search-card{ grid-template-columns:1fr 1fr; }
+    .search-card .field:first-child{ grid-column:1/-1; }
+    .val-grid, .about-grid, .contact-grid{ grid-template-columns:1fr; }
+    .about-media{ max-width:420px; }
+    .prop-grid{ grid-template-columns:repeat(2,1fr); }
+    .areas-grid{ grid-template-columns:repeat(2,1fr); }
+    .ig-grid{ grid-template-columns:repeat(3,1fr); }
+    .footer-top{ grid-template-columns:1fr 1fr; row-gap:44px; }
+  }
+
+  @media (max-width:900px){
+    nav.primary-nav, .header-cta .btn{ display:none; }
+    .hamburger{ display:flex; }
+    .hero{ grid-template-columns:1fr; min-height:auto; }
+    .hero-media{ order:-1; height:56vh; }
+    .hero-caption{ display:none; }
+    .hero-copy{ padding:52px var(--pad) 60px; max-width:none; }
+    .hero-badge{ max-width:none; }
+    .split{ grid-template-columns:1fr; }
+    section{ padding:80px 0; }
+  }
+
+  @media (max-width:680px){
+    .search-section{ margin-top:0; }
+    .search-card{ grid-template-columns:1fr; padding:22px; }
+    .search-card .field{ grid-column:auto; }
+    .prop-grid{ grid-template-columns:1fr; }
+    .t-grid{ grid-template-columns:1fr; }
+    .areas-grid{ grid-template-columns:1fr; }
+    .ig-grid{ grid-template-columns:repeat(3,1fr); }
+    .footer-top{ grid-template-columns:1fr; }
+    .grid-2{ grid-template-columns:1fr; }
+    .cta-final{ padding:100px var(--pad); }
+    .btn{ width:100%; }
+    .hero-ctas .btn, .about-ctas .btn{ width:auto; flex:1 1 auto; }
+    .cta-final .btns .btn{ width:100%; }
+    .footer-bottom{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (max-width:900px){
+    .hero-media img{
+      object-position:center 15%;
+    }
+  }
+
+  @media (max-width:680px){
+    .hero-media{
+      height:min(62vh, 560px);
+      min-height:430px;
+    }
+    .hero-media img{
+      object-position:center 12%;
+    }
+    .hero-copy{
+      padding-top:46px;
+    }
+    .hero-copy h1{
+      font-size:clamp(40px, 12vw, 56px);
+    }
+    .hero-sub{
+      font-size:15.5px;
+    }
+    .hero-ctas{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      width:100%;
+    }
+    .hero-ctas .btn{
+      width:100%;
+    }
+    .about-media{
+      width:100%;
+      max-width:520px;
+      margin:0 auto;
+      aspect-ratio:4/5;
+    }
+    .about-media img{
+      object-position:center 10%;
+    }
+  }
+
+  @media (min-width:901px){
+    .hero-media{
+      min-height:760px;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader">
+  <div class="wrap header-inner">
+    <a href="#home" class="wordmark" aria-label="Roya Sells SoCal — Home">
+      <span class="l1">Roya</span>
+      <span class="l2">SELLS SOCAL</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#buy-sell">Buy</a>
+      <a href="#buy-sell">Sell</a>
+      <a href="#about">About</a>
+      <a href="#listings">Listings</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-cta">
+      <a href="#contact" class="btn btn-dark">Book a Consultation</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home">Home</a>
+  <a href="#buy-sell">Buy</a>
+  <a href="#buy-sell">Sell</a>
+  <a href="#about">About</a>
+  <a href="#listings">Listings</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-dark" style="font-family:var(--sans); font-size:12px; margin-top:10px;">Book a Consultation</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <span class="eyebrow">Southern California Real Estate</span>
+    <h1>Find Your Place<br>in <em>Southern California.</em></h1>
+    <p class="hero-sub">Helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.</p>
+    <div class="hero-ctas">
+      <a href="#property-search" class="btn btn-dark">Explore Homes</a>
+      <a href="#buy-sell" class="btn btn-outline">Sell With Roya</a>
+    </div>
+    <div class="hero-badge">
+      <span class="num">Top 1%</span>
+      <span class="txt">Of Homes Sold<br>In The Nation</span>
+    </div>
+  </div>
+
+  <div class="hero-media">
+    <!-- Roya professional photo -->
+    <img src="royasellssocalpfp.png" alt="Roya Sherif, Southern California Realtor" loading="eager"
+         onload="this.parentElement.querySelector('.fallback-mark').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-mark').style.display='flex';">
+    <div class="fallback-mark" style="display:flex;">
+      <i class="fa-solid fa-image" aria-hidden="true"></i>
+      <span>Roya Sherif</span>
+    </div>
+    <div class="veil"></div>
+    <div class="hero-caption">
+      <div class="l1">Roya Sherif</div>
+      <div class="l2">California Realtor · RE/MAX Connections</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROPERTY SEARCH ============ -->
+<!-- PRODUCTION: CONNECT THIS SEARCH TO CLIENT'S APPROVED IDX/MLS PROVIDER -->
+<div class="wrap search-section" id="property-search">
+  <form class="search-card" id="propertySearch">
+    <div class="field">
+      <label for="searchLocation">City, Neighborhood, ZIP or Address</label>
+      <input type="text" id="searchLocation" name="location" placeholder="e.g. San Diego, 92128">
+    </div>
+    <div class="field">
+      <label for="minPrice">Min Price</label>
+      <select id="minPrice" name="minPrice">
+        <option value="">No Min</option>
+        <option>$300,000</option>
+        <option>$500,000</option>
+        <option>$700,000</option>
+        <option>$900,000</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="maxPrice">Max Price</label>
+      <select id="maxPrice" name="maxPrice">
+        <option value="">No Max</option>
+        <option>$700,000</option>
+        <option>$900,000</option>
+        <option>$1,200,000</option>
+        <option>$2,000,000+</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="beds">Beds</label>
+      <select id="beds" name="beds">
+        <option value="">Any</option>
+        <option>1+</option><option>2+</option><option>3+</option><option>4+</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="baths">Baths</label>
+      <select id="baths" name="baths">
+        <option value="">Any</option>
+        <option>1+</option><option>2+</option><option>3+</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-champagne">Search Homes</button>
+  </form>
+</div>
+<div class="search-msg" id="searchMsg"><i class="fa-solid fa-check" aria-hidden="true"></i><span></span></div>
+
+<!-- ============ FEATURED PROPERTIES ============ -->
+<section id="listings">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Featured Properties</span>
+      <h2 id="propertiesHeading">Homes Worth Discovering</h2>
+      <p>A curated look at the kind of homes Roya helps her clients find and sell across Southern California.</p>
+    </div>
+
+    <div class="prop-grid reveal-stagger">
+      <!-- DEMO CONTENT — sample listings for mockup purposes only, not live inventory -->
+      <article class="prop-card">
+        <div class="prop-media">
+          <span class="prop-tag">Just Listed</span>
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80" alt="Modern single-story home with white exterior and desert landscaping in San Diego" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">$899,900</div>
+          <div class="prop-loc">San Diego, CA</div>
+          <div class="prop-specs">
+            <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
+            <span><i class="fa-solid fa-bath"></i> 2 Baths</span>
+            <span><i class="fa-solid fa-ruler-combined"></i> 1,703 Sq Ft</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="prop-card">
+        <div class="prop-media">
+          <span class="prop-tag">Coming Soon</span>
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Contemporary ranch-style home with mountain views in Ramona" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">$749,900</div>
+          <div class="prop-loc">Ramona, CA</div>
+          <div class="prop-specs">
+            <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
+            <span><i class="fa-solid fa-bath"></i> 2 Baths</span>
+            <span><i class="fa-solid fa-ruler-combined"></i> 2,300 Sq Ft</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="prop-card">
+        <div class="prop-media">
+          <span class="prop-tag">Sold</span>
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=80" alt="Updated bungalow with mature landscaping in Escondido" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">$599,000</div>
+          <div class="prop-loc">Escondido, CA</div>
+          <div class="prop-specs">
+            <span><i class="fa-solid fa-bed"></i> 2 Beds</span>
+            <span><i class="fa-solid fa-bath"></i> 2 Baths</span>
+            <span><i class="fa-solid fa-ruler-combined"></i> 1,150 Sq Ft</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="demo-note">Sample listings shown for demonstration purposes. Not current inventory.</p>
+    <div class="center-cta">
+      <a href="#property-search" class="btn btn-outline" id="viewAllHomes">View All Homes</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUY / SELL ============ -->
+<section class="split" id="buy-sell" style="padding:0;">
+  <div class="split-panel dark reveal">
+    <span class="eyebrow">For Buyers</span>
+    <h3>Looking to Buy?</h3>
+    <p>Find a home that fits your life, your goals and your next chapter.</p>
+    <div>
+      <a href="#property-search" class="btn btn-outline-light">Search Homes</a>
+    </div>
+  </div>
+  <div class="split-panel light reveal">
+    <span class="eyebrow" style="color:var(--ink);">For Sellers</span>
+    <h3>Thinking of Selling?</h3>
+    <p>Get a personalized strategy for positioning your home in today's Southern California market.</p>
+    <div>
+      <a href="#valuation" class="btn btn-dark">What's My Home Worth?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOME VALUATION ============ -->
+<section class="valuation" id="valuation">
+  <div class="wrap val-grid">
+    <div class="val-copy reveal">
+      <span class="eyebrow">What's Your Home Worth?</span>
+      <h2>Curious What Your Home<br>Could Sell For?</h2>
+      <p>Get a personalized home value review and discover what today's market could mean for you.</p>
+      <div class="val-stats">
+        <div>
+          <div class="num">Top 1%</div>
+          <div class="lab">Homes Sold Nationally</div>
+        </div>
+        <div>
+          <div class="num">SoCal</div>
+          <div class="lab">Local Market Focus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="val-form reveal">
+      <form name="home-valuation" method="POST" data-netlify="true" id="valuationForm">
+        <input type="hidden" name="form-name" value="home-valuation">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="field">
+          <label for="valAddress">Property Address</label>
+          <input type="text" id="valAddress" name="address" placeholder="123 Main St, San Diego, CA" required>
+        </div>
+        <div class="field">
+          <label for="valName">Name</label>
+          <input type="text" id="valName" name="name" placeholder="Your full name" required>
+        </div>
+        <div class="field">
+          <label for="valEmail">Email</label>
+          <input type="email" id="valEmail" name="email" placeholder="you@email.com" required>
+        </div>
+        <div class="field">
+          <label for="valPhone">Phone</label>
+          <input type="tel" id="valPhone" name="phone" placeholder="(___) ___-____" required>
+        </div>
+        <button type="submit" class="btn btn-champagne btn-block">Get My Home Value</button>
+      </form>
+      <div class="form-success" id="valuationSuccess">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <h4>Request Received</h4>
+        <p>Thank you — Roya will follow up shortly with your personalized home value review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ROYA ============ -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-media reveal">
+      <!-- Roya professional photo -->
+      <img src="royasellssocalpfp.png" alt="Roya Sherif portrait" loading="lazy"
+           onload="this.parentElement.querySelector('.fallback-mark').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-mark').style.display='flex';">
+      <div class="fallback-mark" style="display:flex;">
+        <i class="fa-solid fa-image" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">Meet Roya</span>
+      <h2>Real Estate With Strategy,<br>Style &amp; Personal Attention.</h2>
+      <p>Roya Sherif brings a highly personal approach to Southern California real estate, helping buyers and sellers move with clarity and confidence. From the first conversation through closing day, the focus is simple: understand your goals, build the right strategy, and make every step feel easier.</p>
+      <p>Whether you're buying your first home, selling a longtime residence, or exploring the North County market, Roya blends thoughtful negotiation, considered marketing and genuinely personalized service.</p>
+      <div class="tags">
+        <span>Buyers</span><span>Sellers</span><span>Negotiation</span><span>Marketing</span><span>Southern California</span>
+      </div>
+      <div class="about-ctas">
+        <a href="#contact" class="btn btn-dark">Meet Roya</a>
+        <a href="#contact" class="btn btn-outline">Book a Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<!-- Replace demo testimonials with verified client reviews before launch -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <div class="stars-row" style="justify-content:center;">
+        <span class="stars">★★★★★</span>
+      </div>
+      <span class="eyebrow" style="justify-content:center;">5-Star Client Experience</span>
+      <h2>What Clients Say</h2>
+    </div>
+
+    <div class="t-grid reveal-stagger">
+      <div class="t-card">
+        <span class="stars">★★★★★</span>
+        <p>"Roya made the entire process feel clear and manageable from start to finish."</p>
+        <div class="t-name">Recent Buyer</div>
+        <div class="t-loc">San Diego, CA</div>
+      </div>
+      <div class="t-card">
+        <span class="stars">★★★★★</span>
+        <p>"Her communication, attention to detail and negotiation strategy gave us complete confidence."</p>
+        <div class="t-name">Recent Seller</div>
+        <div class="t-loc">Southern California</div>
+      </div>
+      <div class="t-card">
+        <span class="stars">★★★★★</span>
+        <p>"We always felt like we had someone truly looking out for our best interests."</p>
+        <div class="t-name">Homeowner</div>
+        <div class="t-loc">San Diego County</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AREAS SERVED ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Areas Served</span>
+      <h2>Explore Southern California</h2>
+      <p>Select an area to start your search — Roya helps clients across these communities and beyond.</p>
+    </div>
+    <div class="areas-grid reveal">
+      <div class="area-card" data-area="San Diego"><span>San Diego</span><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="area-card" data-area="Escondido"><span>Escondido</span><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="area-card" data-area="Rancho Bernardo"><span>Rancho Bernardo</span><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="area-card" data-area="Ramona"><span>Ramona</span><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="area-card" data-area="North County"><span>North County</span><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="area-card" data-area="Southern California"><span>Southern California</span><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONSULTATION CTA ============ -->
+<section class="cta-final">
+  <div class="wrap" style="padding:0;">
+    <span class="eyebrow">Let's Talk</span>
+    <h2>Ready for Your Next Move?</h2>
+    <p>Whether you're buying, selling or simply exploring your options, let's start with a conversation.</p>
+    <div class="btns">
+      <a href="#contact" class="btn btn-champagne">Book a Free Consultation</a>
+      <!-- Replace href with tel:+1XXXXXXXXXX once Roya's direct number is confirmed -->
+      <a href="#contact" class="btn btn-outline-light">Call Roya</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Let's Connect</h2>
+      <p>Send a message below and Roya will follow up personally to talk through your goals.</p>
+
+      <div class="contact-detail">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        <div>
+          <div class="lab">Serving</div>
+          <div class="val">San Diego &amp; Southern California</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        <div>
+          <div class="lab">Email</div>
+          <!-- Replace with Roya's confirmed business email -->
+          <div class="val">hello@royasellssocal.com</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+        <div>
+          <div class="lab">Instagram</div>
+          <div class="val"><a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener">@royasellssocal</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <form name="contact-roya" method="POST" data-netlify="true" id="contactForm">
+        <input type="hidden" name="form-name" value="contact-roya">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="cName">Name</label>
+            <input type="text" id="cName" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="field">
+            <label for="cEmail">Email</label>
+            <input type="email" id="cEmail" name="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="cPhone">Phone</label>
+            <input type="tel" id="cPhone" name="phone" placeholder="(___) ___-____">
+          </div>
+          <div class="field">
+            <label for="cInterest">I'm Interested In</label>
+            <select id="cInterest" name="interest">
+              <option>Buying</option>
+              <option>Selling</option>
+              <option>Both</option>
+              <option>Just Exploring</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="cMessage">Message</label>
+          <textarea id="cMessage" name="message" rows="4" placeholder="Tell Roya a bit about what you're looking for..." style="border:none;border-bottom:1px solid var(--line);background:transparent;padding:8px 2px;font-size:14.5px;resize:vertical;"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark btn-block">Send Message</button>
+      </form>
+      <div class="form-success" id="contactSuccess">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <h4>Message Sent</h4>
+        <p>Thanks for reaching out — Roya will be in touch shortly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="ig-section">
+  <div class="wrap">
+    <div class="ig-head reveal">
+      <div>
+        <span class="eyebrow">Follow Along</span>
+        <h2 style="margin-top:18px; font-size:clamp(28px,3vw,38px);">@royasellssocal</h2>
+      </div>
+      <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" class="btn btn-outline">Follow Roya</a>
+    </div>
+    <div class="ig-grid reveal">
+      <!-- Lifestyle / real estate placeholder imagery — replace with approved Instagram content -->
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=400&q=70" alt="Southern California home exterior" loading="lazy"></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=400&q=70" alt="Modern living room interior" loading="lazy"></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=400&q=70" alt="Bright kitchen design" loading="lazy"></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=400&q=70" alt="Southern California neighborhood street" loading="lazy"></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=400&q=70" alt="Home patio and landscaping" loading="lazy"></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=400&q=70" alt="Coastal Southern California view" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="wordmark"><span class="l1">Roya</span><span class="l2">SELLS SOCAL</span></div>
+        <p>Southern California real estate — helping buyers and sellers move with clarity, strategy and confidence.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <span aria-label="Facebook" style="width:36px;height:36px;border:1px solid var(--line-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;opacity:.35;"><i class="fa-brands fa-facebook-f"></i></span>
+          <span aria-label="LinkedIn" style="width:36px;height:36px;border:1px solid var(--line-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;opacity:.35;"><i class="fa-brands fa-linkedin-in"></i></span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#buy-sell">Buy</a>
+        <a href="#buy-sell">Sell</a>
+        <a href="#about">About</a>
+        <a href="#listings">Listings</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#contact">Contact</a>
+        <a href="#valuation">Home Value</a>
+        <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener">@royasellssocal</a>
+      </div>
+      <div class="footer-col">
+        <h4>Brokerage</h4>
+        <!-- Confirm current brokerage affiliation before launch -->
+        <a href="#" style="pointer-events:none; opacity:.6;">RE/MAX Connections</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Roya Sells SoCal. All Rights Reserved.</span>
+      <div class="legal">
+        <span style="opacity:.55;">Privacy Policy</span>
+        <span style="opacity:.55;">Terms</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-note">Website concept created for Roya Sherif.</div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Header scroll state */
+  const header = document.getElementById('siteHeader');
+  const scrollTopBtn = document.getElementById('scrollTop');
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 40);
+    scrollTopBtn.classList.toggle('show', y > 700);
+  }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+  /* Mobile menu */
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  function closeMenu(){
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  /* Reveal on scroll */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.15, rootMargin:'0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  /* Property search demo interaction */
+  const searchForm = document.getElementById('propertySearch');
+  const searchMsg = document.getElementById('searchMsg');
+  const propertiesHeading = document.getElementById('propertiesHeading');
+
+  function runSearch(locationValue){
+    const loc = (locationValue || '').trim();
+    propertiesHeading.textContent = loc ? `Homes Near ${loc}` : 'Homes Worth Discovering';
+    searchMsg.querySelector('span').textContent = loc
+      ? `Showing homes around "${loc}"`
+      : 'Showing all featured homes';
+    searchMsg.classList.add('show');
+
+    document.getElementById('listings').scrollIntoView({ behavior:'smooth', block:'start' });
+
+    clearTimeout(runSearch._t);
+    runSearch._t = setTimeout(() => searchMsg.classList.remove('show'), 4500);
+  }
+
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    runSearch(document.getElementById('searchLocation').value);
+  });
+
+  document.getElementById('viewAllHomes').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('searchLocation').value = '';
+    runSearch('');
+    document.getElementById('property-search') || document.querySelector('.search-card').scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+
+  /* Areas served -> fill search + scroll */
+  document.querySelectorAll('.area-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const area = card.getAttribute('data-area');
+      document.getElementById('searchLocation').value = area;
+      document.querySelector('.search-card').scrollIntoView({ behavior:'smooth', block:'center' });
+      runSearch(area);
+    });
+  });
+
+  /* Form demo success states (safe for local/offline preview) */
+  function handleDemoSubmit(formId, successId){
+    const form = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      // If running locally (no live Netlify endpoint), prevent navigation/error and show success state.
+      if (window.location.protocol === 'file:' || window.location.hostname === 'localhost'){
+        e.preventDefault();
+        form.style.display = 'none';
+        success.classList.add('show');
+      }
+      // On a deployed Netlify site, the form submits natively to Netlify Forms.
+    });
+  }
+  handleDemoSubmit('valuationForm', 'valuationSuccess');
+  handleDemoSubmit('contactForm', 'contactSuccess');
+
+})();
+</script>
+
+</body>
+</html>
