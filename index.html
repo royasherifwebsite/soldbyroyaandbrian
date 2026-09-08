@@ -164,7 +164,7 @@
   /* ============ HEADER ============ */
   header{
     position:fixed; top:0; left:0; right:0; z-index:1000;
-    background:rgba(247,245,241,0);
+    background:linear-gradient(180deg, rgba(15,13,11,.4) 0%, rgba(15,13,11,0) 100%);
     border-bottom:1px solid transparent;
     transition:background .4s var(--ease), border-color .4s var(--ease), padding .4s var(--ease);
   }
@@ -206,18 +206,26 @@
   .hamburger.open span:nth-child(2){ opacity:0; }
   .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
-  /* On mobile, the header sits on top of the hero photo before scrolling,
-     so the dark wordmark/hamburger need to stay legible against it. */
-  @media (max-width:900px){
-    header:not(.scrolled) .wordmark .l1,
-    header:not(.scrolled) .wordmark .l2{
-      color:var(--white);
-      text-shadow:0 1px 10px rgba(0,0,0,.55);
-    }
-    header:not(.scrolled) .hamburger span{
-      background:var(--white);
-      box-shadow:0 1px 6px rgba(0,0,0,.45);
-    }
+  /* Before scrolling, the header floats over the hero (light copy panel
+     on one side, dark photo on the other) with a soft scrim behind it —
+     keep wordmark, nav links and hamburger white so they stay legible
+     over either side, on any screen size. Once scrolled, the header gets
+     its solid cream background and everything reverts to the dark palette. */
+  header:not(.scrolled) .wordmark .l1,
+  header:not(.scrolled) .wordmark .l2{
+    color:var(--white);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+  }
+  header:not(.scrolled) nav.primary-nav a{
+    color:var(--white);
+    text-shadow:0 1px 8px rgba(0,0,0,.5);
+  }
+  header:not(.scrolled) nav.primary-nav a::after{
+    background:var(--white);
+  }
+  header:not(.scrolled) .hamburger span{
+    background:var(--white);
+    box-shadow:0 1px 6px rgba(0,0,0,.45);
   }
 
   .mobile-nav{
