@@ -206,6 +206,20 @@
   .hamburger.open span:nth-child(2){ opacity:0; }
   .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
+  /* On mobile, the header sits on top of the hero photo before scrolling,
+     so the dark wordmark/hamburger need to stay legible against it. */
+  @media (max-width:900px){
+    header:not(.scrolled) .wordmark .l1,
+    header:not(.scrolled) .wordmark .l2{
+      color:var(--white);
+      text-shadow:0 1px 10px rgba(0,0,0,.55);
+    }
+    header:not(.scrolled) .hamburger span{
+      background:var(--white);
+      box-shadow:0 1px 6px rgba(0,0,0,.45);
+    }
+  }
+
   .mobile-nav{
     position:fixed; inset:0; background:var(--cream); z-index:1100;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:34px;
@@ -214,6 +228,13 @@
   }
   .mobile-nav.open{ opacity:1; visibility:visible; transform:translateY(0); }
   .mobile-nav a{ font-family:var(--serif); font-size:30px; }
+  .mobile-nav-close{
+    position:absolute; top:26px; right:var(--pad);
+    width:42px; height:42px; border:none; background:none;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; color:var(--ink); cursor:pointer; z-index:1150;
+  }
+  .mobile-nav-close:hover{ color:var(--champagne); }
 
   /* ============ HERO ============ */
   .hero{
@@ -641,6 +662,9 @@
 </header>
 
 <div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+  </button>
   <a href="#home">Home</a>
   <a href="#property-search">Buy</a>
   <a href="#valuation">Sell</a>
@@ -1175,6 +1199,7 @@
   /* Mobile menu */
   const hamburger = document.getElementById('hamburgerBtn');
   const mobileNav = document.getElementById('mobileNav');
+  const mobileNavClose = document.getElementById('mobileNavClose');
   function closeMenu(){
     hamburger.classList.remove('open');
     mobileNav.classList.remove('open');
@@ -1188,6 +1213,7 @@
     document.body.style.overflow = open ? 'hidden' : '';
   });
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  if (mobileNavClose) mobileNavClose.addEventListener('click', closeMenu);
 
   /* Reveal on scroll */
   const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
