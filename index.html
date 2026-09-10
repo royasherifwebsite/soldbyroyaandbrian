@@ -165,14 +165,21 @@
   /* ============ CASH OFFER CAPTURE ============ */
   .cash-offer{
     position:relative;
-    background:linear-gradient(155deg,#211d19 0%, #3a332b 50%, #5c4c3a 100%);
+    /* cash-offer-bg.jpg is optional: if it's not on disk the gradient below shows on its own.
+       Suggested source (royalty-free, Unsplash License -- free for commercial use, no attribution
+       required): https://unsplash.com/photos/modern-house-with-garage-at-dusk-XbwHrt87mQ0
+       (photo by Brian Babb). Save it into this project folder as cash-offer-bg.jpg. */
+    background:
+      linear-gradient(100deg, rgba(20,17,15,.88) 0%, rgba(20,17,15,.62) 42%, rgba(20,17,15,.24) 100%),
+      url('cash-offer-bg.jpg') center 30% / cover no-repeat,
+      linear-gradient(155deg,#211d19 0%, #3a332b 50%, #5c4c3a 100%);
     padding:150px 0 92px;
     overflow:hidden;
   }
   .cash-offer::before{
     content:"";
     position:absolute; inset:0; z-index:1;
-    background:radial-gradient(circle at 82% 12%, rgba(182,154,114,.20), transparent 55%);
+    background:radial-gradient(circle at 82% 12%, rgba(182,154,114,.16), transparent 55%);
     pointer-events:none;
   }
   .cash-offer-inner{ position:relative; z-index:2; max-width:640px; }
@@ -973,16 +980,18 @@
     </div>
 
     <!-- CRMLS IDX PENDING:
-         Office ID available: ND 16300
-         Candidate Member/Agent ID from Roya (self-reported, UNCONFIRMED — her exact words were
-         "I think my member ID is ND110908"): ND110908. Do NOT treat this as verified. Confirm it
-         directly inside CRMLS Matrix (or with CRMLS support) before using it in any live IDX embed.
-         Still needed either way: an official "IDX / Widgets" embed URL generated inside CRMLS Matrix
-         (Matrix -> My Matrix -> My Info, or Matrix -> Utilities -> IDX & Widgets, depending on the
-         CRMLS Matrix version in use).
-         Replace everything inside #idxWrapper below with the official CRMLS-provided <iframe> or embed
-         snippet once confirmed. Do NOT populate with invented Agent IDs, Matrix IDs, tokens, API
-         endpoints or listing data — ND110908 is UNCONFIRMED and must not be used as-is.
+         Office ID: ND 16300
+         Member/Agent ID: ND110908 (provided by Roya — treat as her working ID; still worth a quick
+         double-check with her once results are visible, since her own phrasing was "I think").
+         What's STILL missing (this is a CRMLS platform requirement, not a caution we're choosing to
+         add): the official "IDX / Widgets" embed URL or <iframe> snippet generated inside CRMLS Matrix
+         (Matrix -> My Matrix -> My Info, or Matrix -> Utilities -> IDX & Widgets). The Office ID and
+         Member ID alone do not produce a working search widget — CRMLS only issues that through the
+         Matrix-generated embed code, tied to the account's IDX/VOW agreement.
+         Replace everything inside #idxWrapper below with that official CRMLS-provided embed once
+         available. Do NOT construct an iframe src, API endpoint or token by hand from ND 16300 /
+         ND110908 — CRMLS embeds are not a predictable URL pattern; using a guessed one would show
+         nothing (or fail) rather than real listings.
     -->
     <div class="idx-wrapper reveal" id="idxWrapper">
       <!-- CRMLS IDX HERE -->
