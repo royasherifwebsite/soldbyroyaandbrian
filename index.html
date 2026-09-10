@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roya Sells SoCal | Southern California Real Estate</title>
-<meta name="description" content="Roya Sherif — Southern California real estate agent. Buy, sell and explore homes across San Diego, Escondido, Rancho Bernardo, Ramona and North County with a personalized, strategy-driven approach.">
+<title>Roya &amp; Brian Group | Southern California Real Estate</title>
+<meta name="description" content="Roya & Brian Group — Southern California real estate team. Buy, sell and explore homes across San Diego, Escondido, Rancho Bernardo, Ramona and North County with a personalized, strategy-driven approach.">
 <meta name="theme-color" content="#111111">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Roya Sells SoCal | Southern California Real Estate">
-<meta property="og:description" content="Helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.">
+<meta property="og:title" content="Roya & Brian Group | Southern California Real Estate">
+<meta property="og:description" content="Roya & Brian Group — helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="royasellssocalpfp.png">
 
@@ -20,13 +20,14 @@
 
 <!-- Structured data: only verified, publicly-stated information is included below.
      Do not add telephone, street address, license number, review count or rating
-     until confirmed by Roya. -->
+     until confirmed by Roya. A separate "Brian" entity is NOT added here yet — his
+     last name, DRE license and role are still unconfirmed by the client. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
   "name": "Roya Sherif",
-  "alternateName": "Roya Sells SoCal",
+  "alternateName": "Roya & Brian Group",
   "image": "royasellssocalpfp.png",
   "sameAs": ["https://www.instagram.com/royasellssocal/"],
   "areaServed": [
@@ -37,7 +38,7 @@
     "North County San Diego, CA",
     "Southern California"
   ],
-  "description": "Southern California real estate agent helping buyers and sellers navigate the market with confidence, strategy and personalized service."
+  "description": "Roya & Brian Group is a Southern California real estate team helping buyers and sellers navigate the market with confidence, strategy and personalized service."
 }
 </script>
 
@@ -161,6 +162,63 @@
   .reveal-stagger.in > *:nth-child(3){ transition-delay:.25s; }
   .reveal-stagger.in > *:nth-child(4){ transition-delay:.35s; }
 
+  /* ============ CASH OFFER CAPTURE ============ */
+  .cash-offer{
+    position:relative;
+    background:linear-gradient(155deg,#211d19 0%, #3a332b 50%, #5c4c3a 100%);
+    padding:150px 0 92px;
+    overflow:hidden;
+  }
+  .cash-offer::before{
+    content:"";
+    position:absolute; inset:0; z-index:1;
+    background:radial-gradient(circle at 82% 12%, rgba(182,154,114,.20), transparent 55%);
+    pointer-events:none;
+  }
+  .cash-offer-inner{ position:relative; z-index:2; max-width:640px; }
+  .cash-offer h2{
+    color:var(--white);
+    font-size:clamp(34px, 4.4vw, 54px);
+    margin:18px 0 16px;
+  }
+  .cash-offer-sub{
+    color:rgba(255,255,255,.78);
+    font-size:16px;
+    line-height:1.6;
+    max-width:520px;
+    margin:0 0 34px;
+  }
+  .cash-offer-form{
+    display:flex; gap:14px; flex-wrap:wrap; align-items:center;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2);
+    padding:10px 10px 10px 22px;
+    max-width:560px;
+  }
+  .cash-offer-form input{
+    flex:1 1 240px; min-width:0;
+    background:transparent; border:none; outline:none;
+    color:var(--white); font-family:var(--sans); font-size:15px;
+    padding:14px 0;
+  }
+  .cash-offer-form input::placeholder{ color:rgba(255,255,255,.55); }
+  .cash-offer-form .btn{ flex:0 0 auto; white-space:nowrap; }
+  .cash-offer-disclaimer{
+    color:rgba(255,255,255,.5);
+    font-size:11.5px;
+    line-height:1.5;
+    max-width:520px;
+    margin:16px 0 0;
+  }
+
+  @media (max-width:680px){
+    .cash-offer{ padding:116px 0 60px; }
+    .cash-offer h2{ font-size:clamp(30px, 9vw, 40px); }
+    .cash-offer-form{ flex-direction:column; align-items:stretch; padding:16px; }
+    .cash-offer-form input{ padding:12px 4px; }
+    .cash-offer-form .btn{ width:100%; }
+  }
+
   /* ============ HEADER ============ */
   header{
     position:fixed; top:0; left:0; right:0; z-index:1000;
@@ -181,7 +239,7 @@
   header.scrolled .header-inner{ padding-top:16px; padding-bottom:16px; }
 
   .wordmark{ display:flex; flex-direction:column; line-height:1; }
-  .wordmark .l1{ font-family:var(--serif); font-size:24px; letter-spacing:.06em; font-weight:600; }
+  .wordmark .l1{ font-family:var(--serif); font-size:21px; letter-spacing:.02em; font-weight:600; white-space:nowrap; }
   .wordmark .l2{ font-family:var(--sans); font-size:9.5px; letter-spacing:.32em; color:var(--champagne); font-weight:600; margin-top:5px; }
 
   nav.primary-nav{ display:flex; align-items:center; gap:40px; }
@@ -425,6 +483,14 @@
   }
   .about-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
 
+  .team-mini{ display:flex; gap:22px; align-items:center; margin:6px 0 30px; flex-wrap:wrap; }
+  .team-mini-person{ display:flex; align-items:center; gap:10px; }
+  .team-mini-person img{
+    width:46px; height:46px; border-radius:50%; object-fit:cover; object-position:center 20%;
+    border:1px solid var(--line);
+  }
+  .team-mini-person span{ font-size:12.5px; letter-spacing:.04em; color:var(--charcoal); font-weight:500; }
+
   /* ============ TESTIMONIALS ============ */
   .testimonials{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .stars-row{ display:flex; align-items:center; gap:14px; margin-bottom:10px; }
@@ -645,9 +711,9 @@
 <!-- ============ HEADER ============ -->
 <header id="siteHeader">
   <div class="wrap header-inner">
-    <a href="#home" class="wordmark" aria-label="Roya Sells SoCal — Home">
-      <span class="l1">Roya</span>
-      <span class="l2">SELLS SOCAL</span>
+    <a href="#home" class="wordmark" aria-label="Roya & Brian Group — Home">
+      <span class="l1">Roya &amp; Brian</span>
+      <span class="l2">GROUP</span>
     </a>
 
     <nav class="primary-nav" aria-label="Primary">
@@ -683,8 +749,23 @@
   <a href="#contact" class="btn btn-dark" style="font-family:var(--sans); font-size:12px; margin-top:10px;">Book a Consultation</a>
 </div>
 
+<!-- ============ CASH OFFER CAPTURE ============ -->
+<section class="cash-offer" id="home">
+  <div class="wrap cash-offer-inner reveal">
+    <span class="eyebrow">Free Cash Offer</span>
+    <h2>Curious What Your Home<br>Is Worth In Cash?</h2>
+    <p class="cash-offer-sub">Enter your address to start a fast, no-obligation cash offer estimate for your Southern California home &mdash; no showings, no repairs, no pressure.</p>
+
+    <form class="cash-offer-form" id="cashOfferForm">
+      <input type="text" id="cashOfferAddress" placeholder="Enter your home address" aria-label="Property Address" required>
+      <button type="submit" class="btn btn-champagne">Get My Cash Offer</button>
+    </form>
+    <p class="cash-offer-disclaimer">Not a guaranteed offer. Estimates are informational only and every request is followed up personally by Roya &amp; Brian Group before any offer is finalized.</p>
+  </div>
+</section>
+
 <!-- ============ HERO ============ -->
-<section class="hero" id="home">
+<section class="hero">
   <div class="hero-copy">
     <span class="eyebrow">Southern California Real Estate</span>
     <h1>Find Your Place<br>in <em>Southern California.</em></h1>
@@ -817,15 +898,30 @@
       </div>
     </div>
     <div class="about-copy reveal">
-      <span class="eyebrow">Meet Roya</span>
+      <span class="eyebrow">Meet Roya &amp; Brian</span>
       <h2>Real Estate With Strategy,<br>Style &amp; Personal Attention.</h2>
       <p>Roya Sherif brings a highly personal approach to Southern California real estate, helping buyers and sellers move with clarity and confidence. From the first conversation through closing day, the focus is simple: understand your goals, build the right strategy, and make every step feel easier.</p>
       <p>Whether you're buying your first home, selling a longtime residence, or exploring the North County market, Roya blends thoughtful negotiation, considered marketing and genuinely personalized service.</p>
       <div class="tags">
         <span>Buyers</span><span>Sellers</span><span>Negotiation</span><span>Marketing</span><span>Southern California</span>
       </div>
+
+      <!-- Brian's last name, role/title and DRE license are not yet confirmed by the client;
+           only his first name and photo are shown until that information is provided. No bio,
+           experience or sales-volume claims are made about Brian. -->
+      <div class="team-mini">
+        <div class="team-mini-person">
+          <img src="royasellssocalpfp.png" alt="Roya" loading="lazy">
+          <span>Roya</span>
+        </div>
+        <div class="team-mini-person">
+          <img src="brian-headshot.png" alt="Brian" loading="lazy">
+          <span>Brian</span>
+        </div>
+      </div>
+
       <div class="about-ctas">
-        <a href="#contact" class="btn btn-dark">Meet Roya</a>
+        <a href="#contact" class="btn btn-dark">Meet The Team</a>
         <a href="#contact" class="btn btn-outline">Book a Consultation</a>
       </div>
     </div>
@@ -878,13 +974,15 @@
 
     <!-- CRMLS IDX PENDING:
          Office ID available: ND 16300
-         Missing: Roya's CRMLS Agent ID (also called Public ID / Member ID / Matrix Login ID), which is
-         required to scope an IDX search to her listings — OR an official "IDX / Widgets" embed URL
-         generated inside CRMLS Matrix (Matrix -> My Matrix -> My Info, or Matrix -> Utilities -> IDX &
-         Widgets, depending on the CRMLS Matrix version in use).
+         Candidate Member/Agent ID from Roya (self-reported, UNCONFIRMED — her exact words were
+         "I think my member ID is ND110908"): ND110908. Do NOT treat this as verified. Confirm it
+         directly inside CRMLS Matrix (or with CRMLS support) before using it in any live IDX embed.
+         Still needed either way: an official "IDX / Widgets" embed URL generated inside CRMLS Matrix
+         (Matrix -> My Matrix -> My Info, or Matrix -> Utilities -> IDX & Widgets, depending on the
+         CRMLS Matrix version in use).
          Replace everything inside #idxWrapper below with the official CRMLS-provided <iframe> or embed
-         snippet once available. Do NOT populate with invented Agent IDs, Matrix IDs, tokens, API
-         endpoints or listing data.
+         snippet once confirmed. Do NOT populate with invented Agent IDs, Matrix IDs, tokens, API
+         endpoints or listing data — ND110908 is UNCONFIRMED and must not be used as-is.
     -->
     <div class="idx-wrapper reveal" id="idxWrapper">
       <!-- CRMLS IDX HERE -->
@@ -1147,7 +1245,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="wordmark"><span class="l1">Roya</span><span class="l2">SELLS SOCAL</span></div>
+        <div class="wordmark"><span class="l1">Roya &amp; Brian</span><span class="l2">GROUP</span></div>
         <p>Southern California real estate — helping buyers and sellers move with clarity, strategy and confidence.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -1275,6 +1373,19 @@
       runSearch(area);
     });
   });
+
+  /* Cash offer capture -> prefill the real home-valuation form and scroll to it */
+  const cashOfferForm = document.getElementById('cashOfferForm');
+  if (cashOfferForm){
+    cashOfferForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const address = document.getElementById('cashOfferAddress').value;
+      const valAddress = document.getElementById('valAddress');
+      valAddress.value = address;
+      document.getElementById('valuation').scrollIntoView({ behavior:'smooth', block:'start' });
+      setTimeout(() => valAddress.focus(), 500);
+    });
+  }
 
   /* Form demo success states (safe for local/offline preview) */
   function handleDemoSubmit(formId, successId){
