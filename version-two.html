@@ -698,6 +698,7 @@
     display:flex; align-items:center; justify-content:center;
   }
   .idx-wrapper iframe{ width:100%; height:100%; min-height:480px; border:0; display:block; }
+  .idx-wrapper iframe{ width:100%; height:900px; border:0; display:block; }
   .idx-placeholder{ text-align:center; max-width:460px; padding:60px 30px; }
   .idx-placeholder i{ font-size:30px; color:var(--champagne); margin-bottom:18px; display:block; }
   .idx-placeholder h3{ font-family:var(--serif); font-weight:500; font-size:26px; margin-bottom:14px; }
@@ -712,7 +713,7 @@
     .cred-item{ border-left:none; padding-left:0; border-top:1px solid var(--line); padding-top:22px; }
     .cred-item:first-child{ border-top:none; padding-top:0; }
     .idx-wrapper{ min-height:400px; margin-bottom:44px; }
-    .idx-wrapper iframe{ min-height:400px; }
+    .idx-wrapper iframe{ height:640px; }
     .idx-placeholder{ padding:44px 22px; }
   }
 
@@ -987,28 +988,20 @@
       <p>Search active listings across San Diego and Southern California, connected directly to the MLS.</p>
     </div>
 
-    <!-- CRMLS IDX PENDING:
-         Office ID: ND 16300
-         Member/Agent ID: ND110908 (provided by Roya — treat as her working ID; still worth a quick
-         double-check with her once results are visible, since her own phrasing was "I think").
-         What's STILL missing (this is a CRMLS platform requirement, not a caution we're choosing to
-         add): the official "IDX / Widgets" embed URL or <iframe> snippet generated inside CRMLS Matrix
-         (Matrix -> My Matrix -> My Info, or Matrix -> Utilities -> IDX & Widgets). The Office ID and
-         Member ID alone do not produce a working search widget — CRMLS only issues that through the
-         Matrix-generated embed code, tied to the account's IDX/VOW agreement.
-         Replace everything inside #idxWrapper below with that official CRMLS-provided embed once
-         available. Do NOT construct an iframe src, API endpoint or token by hand from ND 16300 /
-         ND110908 — CRMLS embeds are not a predictable URL pattern; using a guessed one would show
-         nothing (or fail) rather than real listings.
-    -->
+    <!-- CRMLS IDX -- LIVE
+         Official CRMLS Matrix public IDX embed URL, sent directly by Roya from her CRMLS Matrix
+         account. Verified before embedding: loads Roya Sherif's live CRMLS search results (page
+         shows "All information courtesy of Roya Sherif" / "Sign up with Roya Sherif"), is
+         mobile-responsive on its own, and CRMLS does not send an X-Frame-Options or
+         frame-ancestors header that would block it being framed here (checked directly against
+         the live response headers on 2026-09-14). -->
     <div class="idx-wrapper reveal" id="idxWrapper">
-      <!-- CRMLS IDX HERE -->
-      <div class="idx-placeholder">
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-        <h3>Full MLS Search &mdash; Coming Online</h3>
-        <p>Roya's live CRMLS property search will be embedded directly here, giving visitors real-time access to active listings across San Diego &amp; Southern California.</p>
-        <a href="#contact" class="btn btn-outline">Ask Roya About a Property</a>
-      </div>
+      <iframe
+        src="https://matrix.crmls.org/Matrix/public/IDX.aspx?idx=425838bf"
+        title="Search current listings from Roya Sherif's CRMLS account"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
 
     <div class="section-head reveal" style="margin-top:12px;">
