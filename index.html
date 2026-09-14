@@ -250,6 +250,7 @@
     .cash-offer{ padding:116px 0 60px; }
     .cash-offer h2{ font-size:clamp(30px, 9vw, 40px); }
     .cash-offer-form{ flex-direction:column; align-items:stretch; padding:16px; }
+    .cash-offer-form input, .cash-offer-form select{ flex:1 1 auto; }
     .cash-offer-form input{ padding:12px 4px; }
     .cash-offer-form .btn{ width:100%; }
   }
@@ -426,18 +427,6 @@
     .hero-duo-person img{ width:150px; }
   }
 
-  /* ============ SEARCH BAR ============ */
-  .search-section{ position:relative; margin-top:-46px; z-index:50; }
-  .search-card{
-    background:var(--white);
-    box-shadow:0 24px 60px -20px rgba(17,17,17,.18);
-    border:1px solid var(--line);
-    padding:28px;
-    display:grid;
-    grid-template-columns: 1.6fr 1fr 1fr .8fr .8fr auto;
-    gap:18px;
-    align-items:end;
-  }
   .field{ display:flex; flex-direction:column; gap:8px; }
   .field label{ font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--charcoal); opacity:.7; }
   .field input, .field select{
@@ -446,13 +435,6 @@
   }
   .field input::placeholder{ color:#9a9488; }
   .field input:focus, .field select:focus{ border-bottom-color:var(--champagne); outline:none; }
-  .search-msg{
-    max-width:var(--container); margin:16px auto 0; padding-left:var(--pad); padding-right:var(--pad);
-    font-size:13px; color:var(--champagne); font-weight:600; letter-spacing:.02em;
-    opacity:0; transform:translateY(-6px); transition:opacity .4s var(--ease), transform .4s var(--ease);
-    display:flex; align-items:center; gap:8px;
-  }
-  .search-msg.show{ opacity:1; transform:translateY(0); }
 
   /* ============ SECTION SPACING ============ */
   section{ padding:120px 0; }
@@ -658,8 +640,6 @@
 
   /* ============ RESPONSIVE ============ */
   @media (max-width:1080px){
-    .search-card{ grid-template-columns:1fr 1fr; }
-    .search-card .field:first-child{ grid-column:1/-1; }
     .val-grid, .about-grid, .contact-grid{ grid-template-columns:1fr; }
     .about-media{ max-width:420px; }
     .prop-grid{ grid-template-columns:repeat(2,1fr); }
@@ -681,9 +661,6 @@
   }
 
   @media (max-width:680px){
-    .search-section{ margin-top:0; }
-    .search-card{ grid-template-columns:1fr; padding:22px; }
-    .search-card .field{ grid-column:auto; }
     .prop-grid{ grid-template-columns:1fr; }
     .t-grid{ grid-template-columns:1fr; }
     .areas-grid{ grid-template-columns:1fr; }
@@ -795,7 +772,7 @@
 
     <nav class="primary-nav" aria-label="Primary">
       <a href="#home">Home</a>
-      <a href="#property-search">Buy</a>
+      <a href="#buy-sell">Buy</a>
       <a href="#valuation">Sell</a>
       <a href="#about">About</a>
       <a href="#listings">Properties</a>
@@ -817,7 +794,7 @@
     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
   </button>
   <a href="#home">Home</a>
-  <a href="#property-search">Buy</a>
+  <a href="#buy-sell">Buy</a>
   <a href="#valuation">Sell</a>
   <a href="#about">About</a>
   <a href="#listings">Properties</a>
@@ -929,7 +906,7 @@
       <h1>Find Your Place<br>in <em>Southern California.</em></h1>
       <p class="hero-sub">Helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.</p>
       <div class="hero-ctas">
-        <a href="#property-search" class="btn btn-dark">Search Homes</a>
+        <a href="#listings" class="btn btn-dark">Search Homes</a>
         <a href="#buy-sell" class="btn btn-outline">Sell With Us</a>
       </div>
     </div>
@@ -960,7 +937,7 @@
     <h3>Buying A Home?</h3>
     <p>Find a home that fits your life, your goals and your next chapter.</p>
     <div>
-      <a href="#property-search" class="btn btn-outline-light">Search Homes</a>
+      <a href="#listings" class="btn btn-outline-light">Search Homes</a>
     </div>
   </div>
   <div class="split-panel light split-photo reveal" style="background-image:linear-gradient(180deg, rgba(17,17,17,.5), rgba(17,17,17,.75)), url('sell-bg.jpg');">
@@ -1015,53 +992,6 @@
     </div>
   </div>
 </section>
-
-<!-- ============ PROPERTY SEARCH ============ -->
-<!-- PRODUCTION: CONNECT THIS SEARCH TO CLIENT'S APPROVED IDX/MLS PROVIDER -->
-<div class="wrap search-section" id="property-search">
-  <form class="search-card" id="propertySearch">
-    <div class="field">
-      <label for="searchLocation">City, Neighborhood, ZIP or Address</label>
-      <input type="text" id="searchLocation" name="location" placeholder="e.g. San Diego, 92128">
-    </div>
-    <div class="field">
-      <label for="minPrice">Min Price</label>
-      <select id="minPrice" name="minPrice">
-        <option value="">No Min</option>
-        <option>$300,000</option>
-        <option>$500,000</option>
-        <option>$700,000</option>
-        <option>$900,000</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="maxPrice">Max Price</label>
-      <select id="maxPrice" name="maxPrice">
-        <option value="">No Max</option>
-        <option>$700,000</option>
-        <option>$900,000</option>
-        <option>$1,200,000</option>
-        <option>$2,000,000+</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="beds">Beds</label>
-      <select id="beds" name="beds">
-        <option value="">Any</option>
-        <option>1+</option><option>2+</option><option>3+</option><option>4+</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="baths">Baths</label>
-      <select id="baths" name="baths">
-        <option value="">Any</option>
-        <option>1+</option><option>2+</option><option>3+</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-champagne">Search Homes</button>
-  </form>
-</div>
-<div class="search-msg" id="searchMsg"><i class="fa-solid fa-check" aria-hidden="true"></i><span></span></div>
 
 <!-- ============ TESTIMONIALS ============ -->
 <!-- 4 real verified reviews from Roya's realtor.com profile, sent by Douglas 2026-09-14. Reproduced
@@ -1193,7 +1123,7 @@
 
     <p class="demo-note">Sample listings shown for demonstration purposes. Not current inventory.</p>
     <div class="center-cta">
-      <a href="#property-search" class="btn btn-outline" id="viewAllHomes">View All Homes</a>
+      <a href="#listings" class="btn btn-outline" id="viewAllHomes">View All Homes</a>
     </div>
   </div>
 </section>
@@ -1398,7 +1328,7 @@
       </div>
       <div class="footer-col">
         <h4>Explore</h4>
-        <a href="#property-search">Buy</a>
+        <a href="#buy-sell">Buy</a>
         <a href="#valuation">Sell</a>
         <a href="#about">About</a>
         <a href="#listings">Properties</a>
@@ -1507,44 +1437,12 @@
   }, { threshold:0.15, rootMargin:'0px 0px -60px 0px' });
   revealEls.forEach(el => io.observe(el));
 
-  /* Property search demo interaction */
-  const searchForm = document.getElementById('propertySearch');
-  const searchMsg = document.getElementById('searchMsg');
-  const propertiesHeading = document.getElementById('propertiesHeading');
-
-  function runSearch(locationValue){
-    const loc = (locationValue || '').trim();
-    propertiesHeading.textContent = loc ? `Homes Near ${loc}` : 'Homes Worth Discovering';
-    searchMsg.querySelector('span').textContent = loc
-      ? `Showing homes around "${loc}"`
-      : 'Showing all featured homes';
-    searchMsg.classList.add('show');
-
-    document.getElementById('listings').scrollIntoView({ behavior:'smooth', block:'start' });
-
-    clearTimeout(runSearch._t);
-    runSearch._t = setTimeout(() => searchMsg.classList.remove('show'), 4500);
-  }
-
-  searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    runSearch(document.getElementById('searchLocation').value);
-  });
-
-  document.getElementById('viewAllHomes').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('searchLocation').value = '';
-    runSearch('');
-    document.getElementById('property-search') || document.querySelector('.search-card').scrollIntoView({ behavior:'smooth', block:'center' });
-  });
-
-  /* Areas served -> fill search + scroll */
+  /* Areas served -> take the visitor straight to the live CRMLS search (no fake filtering --
+     the property-search widget that used to sit here never actually filtered the IDX, so it was
+     removed; the real IDX embed below has its own address/city/price search built in). */
   document.querySelectorAll('.area-card').forEach(card => {
     card.addEventListener('click', () => {
-      const area = card.getAttribute('data-area');
-      document.getElementById('searchLocation').value = area;
-      document.querySelector('.search-card').scrollIntoView({ behavior:'smooth', block:'center' });
-      runSearch(area);
+      document.getElementById('listings').scrollIntoView({ behavior:'smooth', block:'start' });
     });
   });
 
