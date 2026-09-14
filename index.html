@@ -16,7 +16,8 @@
 <meta name="robots" content="index, follow">
 <!-- Add the production canonical URL once Roya's domain is confirmed, e.g.: -->
 <!-- <link rel="canonical" href="https://www.royasellssocal.com/"> -->
-<!-- Favicon pending: add favicon.ico / apple-touch-icon once final brand assets are provided -->
+<link rel="icon" type="image/png" href="favicon-512.png">
+<link rel="apple-touch-icon" href="favicon-512.png">
 
 <!-- Structured data: only verified, publicly-stated information is included below.
      Do not add telephone, street address, license number, review count or rating
@@ -474,6 +475,8 @@
   .split-panel.light{ background:var(--taupe); color:var(--ink); }
   .split-panel h3{ font-size:clamp(28px,3vw,38px); margin-top:16px; }
   .split-panel p{ font-size:15.5px; line-height:1.7; margin:18px 0 30px; opacity:.85; max-width:380px; }
+  .split-panel.split-photo{ background-size:cover; background-position:center; color:var(--white); }
+  .split-panel.split-photo .eyebrow{ color:var(--champagne); }
 
   /* ============ VALUATION ============ */
   .valuation{ background:var(--charcoal); color:var(--white); }
@@ -728,6 +731,7 @@
   .cred-item{ text-align:center; padding-left:26px; border-left:1px solid var(--line); }
   .cred-item:first-child{ border-left:none; padding-left:0; }
   .cred-num{ display:block; font-family:var(--serif); font-size:25px; color:var(--champagne); margin-bottom:8px; }
+  .cred-count{ font-variant-numeric:tabular-nums; }
   .cred-lab{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--charcoal); opacity:.75; font-weight:600; line-height:1.5; }
 
   /* ============ IDX / MLS SEARCH ============ */
@@ -844,6 +848,30 @@
   </div>
 </section>
 
+<!-- ============ CREDIBILITY / AUTHORITY ============ -->
+<section class="credibility">
+  <div class="wrap credibility-grid reveal-stagger">
+    <div class="cred-item">
+      <span class="cred-num"><span class="cred-count" data-target="17" data-decimals="0" data-suffix=" Yrs">0 Yrs</span></span>
+      <span class="cred-lab">Combined<br>Experience</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-num">Top <span class="cred-count" data-target="1" data-decimals="0" data-suffix="%">0%</span></span>
+      <span class="cred-lab">Of Real Estate<br>Professionals</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-num"><span class="cred-count" data-target="9.1" data-decimals="1" data-suffix="%*">0.0%*</span></span>
+      <span class="cred-lab">Avg. Sold Over<br>Asking Price</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-num">RE/MAX**</span>
+      <span class="cred-lab">Global Marketing<br>&amp; Reach</span>
+    </div>
+  </div>
+  <!-- 9.1% (avg. sold over asking) and RE/MAX network stats published without a separate footnote/
+       disclosure line, per Douglas's explicit authorization -- Roya confirmed these figures herself. -->
+</section>
+
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap hero-inner">
@@ -868,6 +896,30 @@
         <img src="brian-headshot.png" alt="Brian, Roya &amp; Brian Group" loading="eager">
         <span class="hero-duo-name">Brian</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUY / SELL ============ -->
+<section class="split" id="buy-sell" style="padding:0;">
+  <!-- Background photos: royalty-free Unsplash images (free-to-use license, no attribution
+       required) chosen to echo the client-referenced exudeluxurygroup.com look -- a modern home
+       exterior for buyers, a bright staged living room for sellers -- with a dark overlay for
+       text legibility. Neither depicts an actual listing or client property. -->
+  <div class="split-panel dark split-photo reveal" style="background-image:linear-gradient(180deg, rgba(17,17,17,.68), rgba(17,17,17,.82)), url('buy-bg.jpg');">
+    <span class="eyebrow">For Buyers</span>
+    <h3>Buying A Home?</h3>
+    <p>Find a home that fits your life, your goals and your next chapter.</p>
+    <div>
+      <a href="#property-search" class="btn btn-outline-light">Search Homes</a>
+    </div>
+  </div>
+  <div class="split-panel light split-photo reveal" style="background-image:linear-gradient(180deg, rgba(17,17,17,.5), rgba(17,17,17,.75)), url('sell-bg.jpg');">
+    <span class="eyebrow">For Sellers</span>
+    <h3>Selling A Home?</h3>
+    <p>Get a personalized strategy for positioning your home in today's Southern California market.</p>
+    <div>
+      <a href="#valuation" class="btn btn-outline-light">Get Your Home Value</a>
     </div>
   </div>
 </section>
@@ -961,50 +1013,6 @@
   </form>
 </div>
 <div class="search-msg" id="searchMsg"><i class="fa-solid fa-check" aria-hidden="true"></i><span></span></div>
-
-<!-- ============ CREDIBILITY / AUTHORITY ============ -->
-<section class="credibility">
-  <div class="wrap credibility-grid reveal-stagger">
-    <div class="cred-item">
-      <span class="cred-num">17 Yrs</span>
-      <span class="cred-lab">Combined<br>Experience</span>
-    </div>
-    <div class="cred-item">
-      <span class="cred-num">Top 1%</span>
-      <span class="cred-lab">Of Real Estate<br>Professionals</span>
-    </div>
-    <div class="cred-item">
-      <span class="cred-num">9.1%*</span>
-      <span class="cred-lab">Avg. Sold Over<br>Asking Price</span>
-    </div>
-    <div class="cred-item">
-      <span class="cred-num">RE/MAX**</span>
-      <span class="cred-lab">Global Marketing<br>&amp; Reach</span>
-    </div>
-  </div>
-  <!-- 9.1% (avg. sold over asking) and RE/MAX network stats published without a separate footnote/
-       disclosure line, per Douglas's explicit authorization -- Roya confirmed these figures herself. -->
-</section>
-
-<!-- ============ BUY / SELL ============ -->
-<section class="split" id="buy-sell" style="padding:0;">
-  <div class="split-panel dark reveal">
-    <span class="eyebrow">For Buyers</span>
-    <h3>Buying A Home?</h3>
-    <p>Find a home that fits your life, your goals and your next chapter.</p>
-    <div>
-      <a href="#property-search" class="btn btn-outline-light">Search Homes</a>
-    </div>
-  </div>
-  <div class="split-panel light reveal">
-    <span class="eyebrow" style="color:var(--ink);">For Sellers</span>
-    <h3>Selling A Home?</h3>
-    <p>Get a personalized strategy for positioning your home in today's Southern California market.</p>
-    <div>
-      <a href="#valuation" class="btn btn-dark">Get Your Home Value</a>
-    </div>
-  </div>
-</section>
 
 <!-- ============ TESTIMONIALS ============ -->
 <!-- 4 real verified reviews from Roya's realtor.com profile, sent by Douglas 2026-09-14. Reproduced
@@ -1406,6 +1414,37 @@
   });
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   if (mobileNavClose) mobileNavClose.addEventListener('click', closeMenu);
+
+  /* Credibility band -- animate numbers counting up to their final value
+     when the section scrolls into view (17, Top 1%, 9.1%). RE/MAX is a
+     wordmark, not a number, so it is left to the existing reveal-stagger
+     fade-in instead of a count-up. */
+  const credCounts = document.querySelectorAll('.cred-count');
+  if (credCounts.length){
+    const animateCredCount = (el) => {
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const start = performance.now();
+      const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (target * eased).toFixed(decimals) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const credIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          animateCredCount(entry.target);
+          credIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.4 });
+    credCounts.forEach(el => credIO.observe(el));
+  }
 
   /* Reveal on scroll */
   const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
