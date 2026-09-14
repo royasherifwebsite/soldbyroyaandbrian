@@ -11,7 +11,7 @@
 <meta property="og:title" content="Roya & Brian Group | Southern California Real Estate">
 <meta property="og:description" content="Roya & Brian Group — helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="new_hero.jpeg">
+<meta property="og:image" content="hero-cover.jpg">
 
 <meta name="robots" content="index, follow">
 <!-- Add the production canonical URL once Roya's domain is confirmed, e.g.: -->
@@ -29,7 +29,7 @@
   "@type": "RealEstateAgent",
   "name": "Roya Sherif",
   "alternateName": "Roya & Brian Group",
-  "image": "new_hero.jpeg",
+  "image": "hero-cover.jpg",
   "sameAs": ["https://www.instagram.com/royasellssocal/"],
   "areaServed": [
     "San Diego, CA",
@@ -258,10 +258,14 @@
   /* ============ HEADER ============ */
   header{
     position:fixed; top:0; left:0; right:0; z-index:1000;
+    background:linear-gradient(180deg, rgba(15,13,11,.35) 0%, rgba(15,13,11,0) 100%);
+    border-bottom:1px solid transparent;
+    transition:background .4s var(--ease), border-color .4s var(--ease), padding .4s var(--ease);
+  }
+  header.scrolled{
     background:rgba(255,255,255,0.92);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
-    transition:padding .4s var(--ease);
   }
   .header-inner{
     display:flex; align-items:center; justify-content:space-between;
@@ -296,9 +300,26 @@
   .hamburger.open span:nth-child(2){ opacity:0; }
   .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
-  /* The header is solid/light from the very top of the page now (Hero, the
-     new first section, is always light) -- no more transparent/white-on-dark
-     state is needed; scrolling only shrinks its padding a touch. */
+  /* Before scrolling, the header floats transparently over the Hero photo --
+     keep wordmark, nav links and hamburger white so they stay legible over
+     it. Once scrolled past the Hero, the header gets its solid white
+     background and everything reverts to the dark palette. */
+  header:not(.scrolled) .wordmark .l1,
+  header:not(.scrolled) .wordmark .l2{
+    color:var(--white);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+  }
+  header:not(.scrolled) nav.primary-nav a{
+    color:var(--white);
+    text-shadow:0 1px 8px rgba(0,0,0,.5);
+  }
+  header:not(.scrolled) nav.primary-nav a::after{
+    background:var(--white);
+  }
+  header:not(.scrolled) .hamburger span{
+    background:var(--white);
+    box-shadow:0 1px 6px rgba(0,0,0,.45);
+  }
 
   .mobile-nav{
     position:fixed; inset:0; background:var(--cream); z-index:1100;
@@ -379,31 +400,34 @@
   .hero-caption .l1{ font-family:var(--serif); font-style:italic; font-size:22px; }
   .hero-caption .l2{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; opacity:.8; margin-top:4px; }
 
-  /* Hero rebuilt (2026-09) as a duo photo beneath the headline, per Roya's request -- supersedes the
-     grid/photo-panel rules above. Those older .hero-media/.hero-caption/.hero-badge rules (and their
-     responsive overrides further down) are now unused/dead CSS, left in place to avoid touching their
-     scattered @media blocks and risking an unrelated regression. */
+  /* Hero rebuilt (2026-09b) as a full-bleed photo of Roya & Brian together
+     (hero-cover.jpg), with the header floating transparently over it -- closer
+     to the Exude Luxury Group look Roya referenced. Supersedes the "duo photo
+     beneath the headline" version just above (now dead, along with the older
+     grid/photo-panel rules further up) -- left in place to avoid touching
+     their scattered @media blocks and risking an unrelated regression. */
   .hero{
-    display:block;
-    background:var(--cream);
-    min-height:0;
-    padding:120px 0 84px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:150px var(--pad) 90px;
+    background:
+      linear-gradient(180deg, rgba(20,18,16,.32) 0%, rgba(20,18,16,.5) 55%, rgba(20,18,16,.68) 100%),
+      url('hero-cover.jpg') center 18% / cover no-repeat,
+      #e7e7e5;
+    overflow:hidden;
   }
-  .hero-inner{ text-align:center; }
+  .hero-inner{ position:relative; z-index:2; text-align:center; width:100%; }
   .hero-copy{
-    display:block; padding:0; max-width:680px; margin:0 auto 52px; text-align:center;
+    display:block; padding:0; max-width:680px; margin:0 auto; text-align:center;
   }
+  .hero-copy h1{ color:var(--white); text-shadow:0 2px 24px rgba(0,0,0,.4); }
+  .hero-sub{ color:rgba(255,255,255,.85); margin-left:auto; margin-right:auto; }
   .hero-ctas{ justify-content:center; }
-  .hero-duo{ display:flex; justify-content:center; align-items:flex-end; gap:56px; flex-wrap:wrap; }
-  .hero-duo-person{ display:flex; flex-direction:column; align-items:center; gap:16px; }
-  .hero-duo-person img{ width:260px; height:auto; display:block; }
-  .hero-duo-name{
-    font-family:var(--serif); font-style:italic; font-size:20px; letter-spacing:.04em; color:var(--charcoal);
-  }
   @media (max-width:680px){
-    .hero{ padding:96px 0 60px; }
-    .hero-duo{ gap:24px; }
-    .hero-duo-person img{ width:150px; }
+    .hero{ min-height:88vh; padding:120px var(--pad) 64px; background-position:center 12%; }
   }
 
   .field{ display:flex; flex-direction:column; gap:8px; }
@@ -783,6 +807,10 @@
 </div>
 
 <!-- ============ HERO ============ -->
+<!-- hero-cover.jpg: combined studio photo of Roya and Brian together, provided by Douglas
+     specifically to replace the separate new_hero.jpeg/brian-headshot.png duo, so the header can
+     float transparently over one full-bleed image -- matching the look of the Exude Luxury Group
+     site Roya referenced. -->
 <section class="hero" id="home">
   <div class="wrap hero-inner">
     <div class="hero-copy">
@@ -791,20 +819,7 @@
       <p class="hero-sub">Helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.</p>
       <div class="hero-ctas">
         <a href="#listings" class="btn btn-dark">Search Homes</a>
-        <a href="#buy-sell" class="btn btn-outline">Sell With Us</a>
-      </div>
-    </div>
-
-    <!-- Roya's new studio photo (new_hero.jpeg) paired with Brian's, per Roya's request: her on one
-         side, Brian on the other, About section directly beneath (see section order below). -->
-    <div class="hero-duo">
-      <div class="hero-duo-person">
-        <img src="new_hero.jpeg" alt="Roya Sherif, Southern California Realtor" loading="eager">
-        <span class="hero-duo-name">Roya</span>
-      </div>
-      <div class="hero-duo-person">
-        <img src="brian-headshot.png" alt="Brian, Roya &amp; Brian Group" loading="eager">
-        <span class="hero-duo-name">Brian</span>
+        <a href="#buy-sell" class="btn btn-outline-light">Sell With Us</a>
       </div>
     </div>
   </div>
