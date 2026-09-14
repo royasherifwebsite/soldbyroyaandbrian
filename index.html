@@ -535,12 +535,18 @@
   .testimonials{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .stars-row{ display:flex; align-items:center; gap:14px; margin-bottom:10px; }
   .stars-row .stars{ color:var(--champagne); font-size:14px; letter-spacing:2px; }
-  .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .t-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:32px; }
   .t-card{ background:var(--cream); padding:36px 30px; border:1px solid var(--line); }
   .t-card .stars{ color:var(--champagne); font-size:12px; letter-spacing:2px; margin-bottom:18px; display:block; }
   .t-card p{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.55; color:var(--ink); margin:0 0 24px; }
   .t-name{ font-size:12px; font-weight:600; letter-spacing:.03em; }
   .t-loc{ font-size:11.5px; color:var(--charcoal); opacity:.6; margin-top:2px; }
+  .t-source{
+    display:inline-flex; align-items:center; gap:6px; margin-top:18px;
+    font-size:11px; letter-spacing:.03em; color:var(--charcoal); opacity:.6; text-decoration:none;
+  }
+  .t-source:hover{ opacity:1; text-decoration:underline; }
+  .t-source i{ font-size:9px; }
 
   /* ============ AREAS ============ */
   .areas-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
@@ -569,6 +575,11 @@
   .cta-final h2{ color:var(--white); font-size:clamp(36px,5vw,60px); margin-top:20px; max-width:760px; margin-left:auto; margin-right:auto; }
   .cta-final p{ font-size:16.5px; opacity:.7; max-width:480px; margin:22px auto 40px; line-height:1.7; }
   .cta-final .btns{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+  .cta-final .brand-tagline{
+    margin-top:34px; font-family:var(--serif); font-style:italic; font-size:15px;
+    letter-spacing:.03em; color:var(--champagne);
+  }
+  .cred-disclosure{ text-align:center; font-size:10px; color:var(--charcoal); opacity:.5; margin-top:26px; line-height:1.6; }
 
   /* ============ CONTACT ============ */
   .contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; }
@@ -873,17 +884,18 @@
       </div>
     </div>
     <div class="about-copy reveal">
-      <span class="eyebrow">Meet Roya &amp; Brian</span>
-      <h2>Real Estate With Strategy,<br>Style &amp; Personal Attention.</h2>
-      <p>Roya Sherif brings a highly personal approach to Southern California real estate, helping buyers and sellers move with clarity and confidence. From the first conversation through closing day, the focus is simple: understand your goals, build the right strategy, and make every step feel easier.</p>
-      <p>Whether you're buying your first home, selling a longtime residence, or exploring the North County market, Roya blends thoughtful negotiation, considered marketing and genuinely personalized service.</p>
+      <span class="eyebrow">Our Philosophy</span>
+      <h2>Real Estate Should Be<br>An Experience, Not Just A Transaction.</h2>
+      <p>At Roya &amp; Brian Group, we believe exceptional real estate is built around trust, strategy, communication and results. With 17 years of combined experience and recognition among the Top 1% of real estate professionals, we bring extensive market knowledge, skilled negotiation and a highly personalized approach to every client we represent.</p>
+      <p>Our approach is never one-size-fits-all &mdash; every property, client and situation deserves a strategy built around their individual goals. From the first conversation through closing day and beyond, our focus stays simple: help you make confident decisions while maximizing the value of every opportunity.</p>
       <div class="tags">
         <span>Buyers</span><span>Sellers</span><span>Negotiation</span><span>Marketing</span><span>Southern California</span>
       </div>
 
-      <!-- Brian's last name, role/title and DRE license are not yet confirmed by the client;
-           only his first name and photo are shown until that information is provided. No bio,
-           experience or sales-volume claims are made about Brian. -->
+      <!-- Brian's last name, role/title and DRE license are still not confirmed by the client,
+           so only his first name and photo are shown. The team-level stats below (17 years combined
+           experience, Top 1%, 9.1% over asking, RE/MAX reach) come directly from bio copy Roya sent
+           for "Roya & Brian Group" -- they are not individually attributed to Brian. -->
       <div class="team-mini">
         <div class="team-mini-person">
           <img src="royasellssocalpfp.png" alt="Roya" loading="lazy">
@@ -954,22 +966,24 @@
 <section class="credibility">
   <div class="wrap credibility-grid reveal-stagger">
     <div class="cred-item">
-      <span class="cred-num">SoCal</span>
-      <span class="cred-lab">Southern California<br>Real Estate</span>
-    </div>
-    <div class="cred-item">
-      <span class="cred-num">Buy &amp; Sell</span>
-      <span class="cred-lab">Buyer &amp; Seller<br>Representation</span>
-    </div>
-    <div class="cred-item">
-      <span class="cred-num">1:1</span>
-      <span class="cred-lab">Personalized<br>Strategy</span>
+      <span class="cred-num">17 Yrs</span>
+      <span class="cred-lab">Combined<br>Experience</span>
     </div>
     <div class="cred-item">
       <span class="cred-num">Top 1%</span>
-      <span class="cred-lab">Of Homes Sold<br>In The Nation</span>
+      <span class="cred-lab">Of Real Estate<br>Professionals</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-num">9.1%*</span>
+      <span class="cred-lab">Avg. Sold Over<br>Asking Price</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-num">RE/MAX**</span>
+      <span class="cred-lab">Global Marketing<br>&amp; Reach</span>
     </div>
   </div>
+  <!-- 9.1% (avg. sold over asking) and RE/MAX network stats published without a separate footnote/
+       disclosure line, per Douglas's explicit authorization -- Roya confirmed these figures herself. -->
 </section>
 
 <!-- ============ BUY / SELL ============ -->
@@ -993,7 +1007,9 @@
 </section>
 
 <!-- ============ TESTIMONIALS ============ -->
-<!-- Replace demo testimonials with verified client reviews before launch -->
+<!-- 4 real verified reviews from Roya's realtor.com profile, sent by Douglas 2026-09-14. Reproduced
+     as given (including the reviewers' own original wording/typos), each attributed and linked back
+     to the source profile so a visitor can verify directly on realtor.com. -->
 <section class="testimonials">
   <div class="wrap">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
@@ -1007,21 +1023,31 @@
     <div class="t-grid reveal-stagger">
       <div class="t-card">
         <span class="stars">★★★★★</span>
-        <p>"Roya made the entire process feel clear and manageable from start to finish."</p>
-        <div class="t-name">Recent Buyer</div>
-        <div class="t-loc">San Diego, CA</div>
+        <p>&ldquo;After living in a smaller one-bedroom condo for the last eight years, my girlfriend, beautiful Chihuahua, and I were ready to upgrade and purchase our first home. After checking with a few realtors (none of whom made me feel comfortable), I was put in touch with Roya, via her colleague Rozina. After spending nearly four hours with me on a Saturday, I knew Roya would be able to do everything possible to make this daunting experience into a dream come true. Roya helped through the challenges of selling my condo, assured me to trust her process by putting me in touch with professionals who made me feel even more comfortable. I asked her to meet a number, and she not only did that but delivered more. She was persistent in meeting all the concerns I had regarding my new home and negotiated with precision with the sellers. If a problem crept up during our escrow process, Roya never was concerned; a picture of tranquility. If I felt like things were not in the best spot, Roya assured me we could make adjustments and work with both the buyer and the seller. I&rsquo;m now in my new beautiful home and couldn&rsquo;t be more happy with the future. Our house is everything we hoped it would be, and if it wasn&rsquo;t for Roya&rsquo;s brilliant and skillful practices, we wouldn&rsquo;t be where we are today. Thank you, Roya!&rdquo;</p>
+        <div class="t-name">Andrew</div>
+        <div class="t-loc">Oceanside, CA &middot; Jan 9, 2025</div>
+        <a class="t-source" href="https://www.realtor.com/realestateagents/61714504ed66310012481c6d" target="_blank" rel="noopener">Sourced by realtor.com <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
       </div>
       <div class="t-card">
         <span class="stars">★★★★★</span>
-        <p>"Her communication, attention to detail and negotiation strategy gave us complete confidence."</p>
-        <div class="t-name">Recent Seller</div>
-        <div class="t-loc">Southern California</div>
+        <p>&ldquo;Best experience I&rsquo;ve ever had in a home sale! I&rsquo;ve done this many times before and this is the first time I used this agent three times in a row!! Roya is very professional and really good at what she does! She sold our house more than we ever imagined, so happy with the outcome! Would use her again with no hesitation.&rdquo;</p>
+        <div class="t-name">Joe J</div>
+        <div class="t-loc">Carlsbad, CA &middot; Feb 2, 2024</div>
+        <a class="t-source" href="https://www.realtor.com/realestateagents/61714504ed66310012481c6d" target="_blank" rel="noopener">Sourced by realtor.com <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
       </div>
       <div class="t-card">
         <span class="stars">★★★★★</span>
-        <p>"We always felt like we had someone truly looking out for our best interests."</p>
-        <div class="t-name">Homeowner</div>
-        <div class="t-loc">San Diego County</div>
+        <p>&ldquo;Roya exceeded all our expectations, she had told us she would sell our house in one weekend of showings and SHE SURE did, she told us she would sell it for more then the comps, she did and more than we ever expected 80k over asking!! She set us up for future success, this was most likely our last home we will sell in our lifetime. We&rsquo;re so fortunate we met her, her professionalism and marketing experience is very impressive. We have referred her to all our friends and family and would use her again in a heart beat .&rdquo;</p>
+        <div class="t-name">Sal G</div>
+        <div class="t-loc">Escondido, CA &middot; Jan 29, 2024</div>
+        <a class="t-source" href="https://www.realtor.com/realestateagents/61714504ed66310012481c6d" target="_blank" rel="noopener">Sourced by realtor.com <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
+      <div class="t-card">
+        <span class="stars">★★★★★</span>
+        <p>&ldquo;Roya is one of a kind, in my 64 years I have never met such a fantastic person. She sold our house over asking.price. She has.experience, drive, workethics and a personality unmatched. Do not forget, always available, kind, beautiful and understanding. She loves her work and.she.is very good at it. I would not use anybody but her, would we do.it again Rose Wiesehan&rdquo;</p>
+        <div class="t-name">Rose Wiesehan</div>
+        <div class="t-loc">San Diego, CA &middot; Nov 22, 2023</div>
+        <a class="t-source" href="https://www.realtor.com/realestateagents/61714504ed66310012481c6d" target="_blank" rel="noopener">Sourced by realtor.com <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
@@ -1197,6 +1223,7 @@
       <!-- Replace href with tel:+1XXXXXXXXXX once Roya's direct number is confirmed -->
       <a href="#contact" class="btn btn-outline-light">Contact Roya</a>
     </div>
+    <p class="brand-tagline">Roya &amp; Brian Group &mdash; Sell Faster. Sell for More.</p>
   </div>
 </section>
 
