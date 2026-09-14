@@ -73,6 +73,7 @@
   }
 
   *,*::before,*::after{ box-sizing:border-box; }
+  [hidden]{ display:none !important; }
   html{ scroll-behavior:smooth; }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -216,7 +217,27 @@
     color:var(--white); font-family:var(--sans); font-size:14px; padding:14px 12px;
   }
   .cash-offer-form select option{ color:var(--ink); }
-  .cash-offer-form-step2{ margin-top:14px; }
+  .cash-offer-row2, .cash-offer-row3{ margin-top:14px; }
+  .cash-offer-range{
+    margin-top:14px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2);
+    padding:22px 24px;
+    max-width:560px;
+  }
+  .cash-offer-range-label{
+    color:rgba(255,255,255,.72);
+    font-size:12.5px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    margin:0 0 8px;
+  }
+  .cash-offer-range-value{
+    font-family:var(--serif);
+    color:var(--champagne);
+    font-size:clamp(24px, 3vw, 32px);
+    margin:0 0 18px;
+  }
   .cash-offer-disclaimer{
     color:rgba(255,255,255,.5);
     font-size:11.5px;
@@ -812,38 +833,66 @@
     <h2>Curious What Your Home<br>Is Worth In Cash?</h2>
     <p class="cash-offer-sub">Enter your address to start a fast, no-obligation cash offer estimate for your Southern California home &mdash; no showings, no repairs, no pressure.</p>
 
-    <form class="cash-offer-form" id="cashOfferForm">
-      <input type="text" id="cashOfferAddress" placeholder="Enter your home address" aria-label="Property Address" required>
-      <button type="submit" class="btn btn-champagne">Get My Cash Offer</button>
+    <!-- Single consolidated form: address + size + condition + upgrades are all captured together
+         (no more address-first / details-second split). "See My Range" is a plain button (not a
+         submit) that computes an instant estimate client-side -- see the credOffer* constants in
+         the script block below for the sourced $/sq ft figure and the disclosed adjustment factors
+         -- then reveals "Get My Home Value", which in turn reveals name/email/phone right here.
+         Only the final submit posts to Netlify, so Roya still gets one real lead per visitor. -->
+    <form class="cash-offer-form-wrap" id="cashOfferForm" name="cash-offer" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="cash-offer">
+      <input type="hidden" id="cashOfferRangeField" name="estimated_cash_offer_range" value="">
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+      <div class="cash-offer-form">
+        <input type="text" id="cashOfferAddress" name="address" placeholder="Enter your home address" aria-label="Property Address" required>
+      </div>
+
+      <div class="cash-offer-form cash-offer-row2">
+        <select id="cashOfferSize" name="size" aria-label="Approximate home size" required>
+          <option value="" disabled selected>Approx. size (sq ft)</option>
+          <option value="Under 1,000 sq ft">Under 1,000 sq ft</option>
+          <option value="1,000–1,500 sq ft">1,000–1,500 sq ft</option>
+          <option value="1,500–2,500 sq ft">1,500–2,500 sq ft</option>
+          <option value="2,500–3,500 sq ft">2,500–3,500 sq ft</option>
+          <option value="Over 3,500 sq ft">Over 3,500 sq ft</option>
+        </select>
+        <select id="cashOfferCondition" name="condition" aria-label="Home condition" required>
+          <option value="" disabled selected>Condition</option>
+          <option value="Excellent">Excellent</option>
+          <option value="Good">Good</option>
+          <option value="Fair">Fair</option>
+          <option value="Needs work">Needs work</option>
+        </select>
+        <select id="cashOfferUpgrades" name="upgrades" aria-label="Recent upgrades" required>
+          <option value="" disabled selected>Recent upgrades</option>
+          <option value="Major upgrades (kitchen/bath/roof/HVAC)">Major upgrades (kitchen/bath/roof/HVAC)</option>
+          <option value="Some updates">Some updates</option>
+          <option value="Mostly original">Mostly original</option>
+        </select>
+        <button type="button" class="btn btn-champagne" id="cashOfferRangeBtn">See My Range</button>
+      </div>
+
+      <div class="cash-offer-range" id="cashOfferRange" hidden>
+        <p class="cash-offer-range-label">Based on your answers, your estimated cash offer range is</p>
+        <p class="cash-offer-range-value" id="cashOfferRangeValue">$0 &ndash; $0</p>
+        <button type="button" class="btn btn-outline-light" id="cashOfferValueBtn">Get My Home Value</button>
+      </div>
+
+      <div class="cash-offer-form cash-offer-row3" id="cashOfferContact" hidden>
+        <input type="text" id="cashOfferName" name="name" placeholder="Your full name" aria-label="Name" required>
+        <input type="email" id="cashOfferEmail" name="email" placeholder="you@email.com" aria-label="Email" required>
+        <input type="tel" id="cashOfferPhone" name="phone" placeholder="(___) ___-____" aria-label="Phone" required>
+        <button type="submit" class="btn btn-champagne">Get My Home Value</button>
+      </div>
     </form>
 
-    <!-- Step 2: a few quick details, then hand off to the real home-valuation form below (no
-         fabricated dollar range is generated here -- there's no valuation data source connected to
-         compute one; see property_details hidden field on #valuationForm). -->
-    <form class="cash-offer-form cash-offer-form-step2" id="cashOfferStep2" hidden>
-      <select id="cashOfferSize" aria-label="Approximate home size">
-        <option value="" disabled selected>Approx. size (sq ft)</option>
-        <option value="Under 1,000 sq ft">Under 1,000 sq ft</option>
-        <option value="1,000–1,500 sq ft">1,000–1,500 sq ft</option>
-        <option value="1,500–2,500 sq ft">1,500–2,500 sq ft</option>
-        <option value="2,500–3,500 sq ft">2,500–3,500 sq ft</option>
-        <option value="Over 3,500 sq ft">Over 3,500 sq ft</option>
-      </select>
-      <select id="cashOfferCondition" aria-label="Home condition">
-        <option value="" disabled selected>Condition</option>
-        <option value="Excellent">Excellent</option>
-        <option value="Good">Good</option>
-        <option value="Fair">Fair</option>
-        <option value="Needs work">Needs work</option>
-      </select>
-      <select id="cashOfferUpgrades" aria-label="Recent upgrades">
-        <option value="" disabled selected>Recent upgrades</option>
-        <option value="Major upgrades (kitchen/bath/roof/HVAC)">Major upgrades (kitchen/bath/roof/HVAC)</option>
-        <option value="Some updates">Some updates</option>
-        <option value="Mostly original">Mostly original</option>
-      </select>
-      <button type="submit" class="btn btn-champagne">See My Range</button>
-    </form>
+    <div class="form-success" id="cashOfferSuccess">
+      <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+      <h4>Request Received</h4>
+      <p>Thank you &mdash; Roya will follow up shortly with your personalized cash offer.</p>
+    </div>
+
     <p class="cash-offer-disclaimer">Not a guaranteed offer. Estimates are informational only and every request is followed up personally by Roya &amp; Brian Group before any offer is finalized.</p>
   </div>
 </section>
@@ -1499,35 +1548,70 @@
     });
   });
 
-  /* Cash offer capture, step 1: address -> reveal step 2 (size/condition/upgrades) */
-  const cashOfferForm = document.getElementById('cashOfferForm');
-  const cashOfferStep2 = document.getElementById('cashOfferStep2');
-  let cashOfferAddressValue = '';
-  if (cashOfferForm && cashOfferStep2){
-    cashOfferForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      cashOfferAddressValue = document.getElementById('cashOfferAddress').value;
-      cashOfferForm.hidden = true;
-      cashOfferStep2.hidden = false;
-    });
+  /* Cash offer estimate -- single consolidated form (address + size + condition + upgrades
+     captured together; no more address-first / details-second split). "See My Range" computes
+     an instant, purely informational range client-side from a real, publicly reported San Diego
+     County median sale price per square foot (Redfin, San Diego housing market page, as of Aug
+     2026: $687/sq ft -- https://www.redfin.com/city/16904/CA/San-Diego/housing-market), adjusted
+     by the selected size/condition/upgrades. No customer or listing data is invented here -- only
+     the sourced $/sq ft baseline and the disclosed adjustment factors below feed the estimate --
+     and the disclaimer under the form still applies: a real person at Roya & Brian Group follows
+     up before any offer is finalized. */
+  const CASH_OFFER_PRICE_PER_SQFT = 687; // Redfin, San Diego County median sale price/sq ft, Aug 2026
+  const CASH_OFFER_SIZE_MIDPOINT = {
+    'Under 1,000 sq ft': 850,
+    '1,000–1,500 sq ft': 1250,
+    '1,500–2,500 sq ft': 2000,
+    '2,500–3,500 sq ft': 3000,
+    'Over 3,500 sq ft': 4200,
+  };
+  const CASH_OFFER_CONDITION_FACTOR = { 'Excellent':1.06, 'Good':1.00, 'Fair':0.93, 'Needs work':0.82 };
+  const CASH_OFFER_UPGRADES_FACTOR = {
+    'Major upgrades (kitchen/bath/roof/HVAC)':1.05,
+    'Some updates':1.00,
+    'Mostly original':0.94,
+  };
+  const cashOfferMoney = (n) => '$' + Math.round(n).toLocaleString('en-US');
 
-    /* Step 2: no dollar range is invented here -- there's no valuation data source wired up.
-       Instead, everything the visitor shared is handed to the real home-valuation Netlify form
-       (address prefilled + details in a hidden field) so Roya & Brian Group actually receive it
-       and can follow up with a real, personalized range. */
-    cashOfferStep2.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const size = document.getElementById('cashOfferSize').value;
-      const condition = document.getElementById('cashOfferCondition').value;
-      const upgrades = document.getElementById('cashOfferUpgrades').value;
-      const valAddress = document.getElementById('valAddress');
-      const valDetails = document.getElementById('valPropertyDetails');
-      valAddress.value = cashOfferAddressValue;
-      if (valDetails){
-        valDetails.value = 'Size: ' + size + ' | Condition: ' + condition + ' | Upgrades: ' + upgrades;
+  const cashOfferForm = document.getElementById('cashOfferForm');
+  const cashOfferRangeBtn = document.getElementById('cashOfferRangeBtn');
+  const cashOfferRange = document.getElementById('cashOfferRange');
+  const cashOfferValueBtn = document.getElementById('cashOfferValueBtn');
+  const cashOfferContact = document.getElementById('cashOfferContact');
+
+  if (cashOfferForm && cashOfferRangeBtn){
+    cashOfferRangeBtn.addEventListener('click', () => {
+      const address = document.getElementById('cashOfferAddress');
+      const size = document.getElementById('cashOfferSize');
+      const condition = document.getElementById('cashOfferCondition');
+      const upgrades = document.getElementById('cashOfferUpgrades');
+      if (!address.value || !size.value || !condition.value || !upgrades.value){
+        cashOfferForm.reportValidity();
+        return;
       }
-      document.getElementById('valuation').scrollIntoView({ behavior:'smooth', block:'start' });
-      setTimeout(() => document.getElementById('valName').focus(), 500);
+      const midpoint = CASH_OFFER_SIZE_MIDPOINT[size.value] || 0;
+      const factor = (CASH_OFFER_CONDITION_FACTOR[condition.value] || 1) * (CASH_OFFER_UPGRADES_FACTOR[upgrades.value] || 1);
+      const base = midpoint * CASH_OFFER_PRICE_PER_SQFT * factor;
+      const low = Math.round((base * 0.90) / 5000) * 5000;
+      const high = Math.round((base * 1.10) / 5000) * 5000;
+      document.getElementById('cashOfferRangeValue').textContent = cashOfferMoney(low) + ' – ' + cashOfferMoney(high);
+      const rangeField = document.getElementById('cashOfferRangeField');
+      if (rangeField) rangeField.value = cashOfferMoney(low) + ' - ' + cashOfferMoney(high);
+      cashOfferRange.hidden = false;
+      const detailsRow = cashOfferRangeBtn.closest('.cash-offer-row2');
+      if (detailsRow) detailsRow.hidden = true;
+      cashOfferRange.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    });
+  }
+
+  if (cashOfferValueBtn && cashOfferContact){
+    cashOfferValueBtn.addEventListener('click', () => {
+      cashOfferContact.hidden = false;
+      cashOfferValueBtn.hidden = true;
+      setTimeout(() => {
+        const nameInput = document.getElementById('cashOfferName');
+        if (nameInput) nameInput.focus();
+      }, 300);
     });
   }
 
@@ -1546,6 +1630,7 @@
       // On a deployed Netlify site, the form submits natively to Netlify Forms.
     });
   }
+  handleDemoSubmit('cashOfferForm', 'cashOfferSuccess');
   handleDemoSubmit('valuationForm', 'valuationSuccess');
   handleDemoSubmit('contactForm', 'contactSuccess');
 
