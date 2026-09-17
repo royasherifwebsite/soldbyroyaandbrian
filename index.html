@@ -54,13 +54,14 @@
 <style>
   /* ============ TOKENS ============ */
   :root{
-    --cream:#FFFFFF;
+    --cream:#0c0c0b;
     --ink:#111111;
-    --charcoal:#252525;
+    --charcoal:#c9c3b7;
     --taupe:#C9B9A6;
     --champagne:#B69A72;
     --white:#FFFFFF;
-    --line: rgba(17,17,17,0.1);
+    --surface:#17140f;
+    --line: rgba(255,255,255,0.14);
     --line-light: rgba(255,255,255,0.14);
 
     --serif: 'Cormorant Garamond', 'Times New Roman', serif;
@@ -84,7 +85,7 @@
     margin:0;
     font-family:var(--sans);
     background:var(--cream);
-    color:var(--ink);
+    color:var(--white);
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
@@ -144,10 +145,10 @@
     transition:all .35s var(--ease);
     white-space:nowrap;
   }
-  .btn-dark{ background:var(--ink); color:var(--white); }
+  .btn-dark{ background:var(--ink); color:var(--white); border-color:var(--line-light); }
   .btn-dark:hover{ background:var(--champagne); }
-  .btn-outline{ background:transparent; color:var(--ink); border-color:var(--ink); }
-  .btn-outline:hover{ background:var(--ink); color:var(--white); }
+  .btn-outline{ background:transparent; color:var(--white); border-color:var(--line-light); }
+  .btn-outline:hover{ background:var(--white); color:var(--ink); }
   .btn-outline-light{ background:transparent; color:var(--white); border-color:var(--line-light); }
   .btn-outline-light:hover{ background:var(--white); color:var(--ink); }
   .btn-champagne{ background:var(--champagne); color:var(--white); }
@@ -167,10 +168,10 @@
   /* ============ CASH OFFER CAPTURE ============ */
   .cash-offer{
     position:relative;
-    /* cash-offer-bg.jpg is optional: if it's not on disk the gradient below shows on its own.
-       Suggested source (royalty-free, Unsplash License -- free for commercial use, no attribution
-       required): https://unsplash.com/photos/modern-house-with-garage-at-dusk-XbwHrt87mQ0
-       (photo by Brian Babb). Save it into this project folder as cash-offer-bg.jpg. */
+    /* cash-offer-bg.jpg: luxury stone estate at dusk (royalty-free, Unsplash License --
+       free for commercial use, no attribution required), by Daniel Barnes:
+       https://unsplash.com/photos/RKdLlTyjm5g -- source kept in this project folder as
+       daniel-barnes-RKdLlTyjm5g-unsplash.jpg, this file is the optimized/resized derivative. */
     background:
       linear-gradient(100deg, rgba(20,17,15,.88) 0%, rgba(20,17,15,.62) 42%, rgba(20,17,15,.24) 100%),
       url('cash-offer-bg.jpg') center 30% / cover no-repeat,
@@ -263,7 +264,7 @@
     transition:background .4s var(--ease), border-color .4s var(--ease), padding .4s var(--ease);
   }
   header.scrolled{
-    background:rgba(255,255,255,0.92);
+    background:rgba(10,9,8,0.86);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -295,7 +296,7 @@
     display:none; flex-direction:column; justify-content:center; gap:5px;
     width:30px; height:30px; background:none; border:none; padding:0; z-index:1200;
   }
-  .hamburger span{ display:block; width:100%; height:1px; background:var(--ink); transition:all .35s var(--ease); }
+  .hamburger span{ display:block; width:100%; height:1px; background:var(--white); transition:all .35s var(--ease); }
   .hamburger.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
   .hamburger.open span:nth-child(2){ opacity:0; }
   .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
@@ -333,7 +334,7 @@
     position:absolute; top:26px; right:var(--pad);
     width:42px; height:42px; border:none; background:none;
     display:flex; align-items:center; justify-content:center;
-    font-size:22px; color:var(--ink); cursor:pointer; z-index:1150;
+    font-size:22px; color:var(--white); cursor:pointer; z-index:1150;
   }
   .mobile-nav-close:hover{ color:var(--champagne); }
 
@@ -436,9 +437,9 @@
   .field label{ font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--charcoal); opacity:.7; }
   .field input, .field select{
     border:none; border-bottom:1px solid var(--line); background:transparent;
-    padding:8px 2px; font-size:14.5px; color:var(--ink);
+    padding:8px 2px; font-size:14.5px; color:var(--white);
   }
-  .field input::placeholder{ color:#9a9488; }
+  .field input::placeholder{ color:rgba(255,255,255,.4); }
   .field input:focus, .field select:focus{ border-bottom-color:var(--champagne); outline:none; }
 
   /* ============ SECTION SPACING ============ */
@@ -451,11 +452,11 @@
   /* ============ PROPERTIES ============ */
   .prop-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
   .prop-card{
-    background:var(--white); border:1px solid var(--line);
+    background:var(--surface); border:1px solid var(--line);
     transition:transform .5s var(--ease), box-shadow .5s var(--ease);
   }
   .prop-card:hover{ transform:translateY(-6px); box-shadow:0 30px 50px -30px rgba(17,17,17,.25); }
-  .prop-media{ position:relative; aspect-ratio:4/3; overflow:hidden; background:#e7e1d6; }
+  .prop-media{ position:relative; aspect-ratio:4/3; overflow:hidden; background:#241f1a; }
   .prop-media img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
   .prop-card:hover .prop-media img{ transform:scale(1.06); }
   .prop-tag{
@@ -463,7 +464,7 @@
     font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; padding:7px 12px; font-weight:600;
   }
   .prop-body{ padding:26px; }
-  .prop-price{ font-family:var(--serif); font-size:28px; color:var(--ink); }
+  .prop-price{ font-family:var(--serif); font-size:28px; color:var(--white); }
   .prop-loc{ font-size:13px; color:var(--charcoal); opacity:.75; margin-top:6px; letter-spacing:.01em; }
   .prop-specs{ display:flex; gap:18px; margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
   .prop-specs span{ font-size:12.5px; color:var(--charcoal); display:flex; align-items:center; gap:6px; }
@@ -487,14 +488,14 @@
   .split-panel.split-photo .eyebrow{ color:var(--champagne); }
 
   /* ============ VALUATION ============ */
-  .valuation{ background:var(--charcoal); color:var(--white); }
+  .valuation{ background:#211d19; color:var(--white); }
   .val-grid{ display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
   .val-copy h2{ color:var(--white); font-size:clamp(32px,3.6vw,46px); margin-top:18px; }
   .val-copy p{ font-size:16px; line-height:1.7; opacity:.75; margin-top:20px; max-width:420px; }
   .val-stats{ display:flex; gap:44px; margin-top:40px; }
   .val-stats .num{ font-family:var(--serif); font-size:32px; color:var(--champagne); }
   .val-stats .lab{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; opacity:.65; margin-top:4px; }
-  .val-form{ background:var(--white); color:var(--ink); padding:44px; }
+  .val-form{ background:rgba(255,255,255,.05); color:var(--white); padding:44px; border:1px solid var(--line); }
   .val-form .field{ margin-bottom:20px; }
   .val-form .field label{ opacity:.6; }
   .form-success{
@@ -543,13 +544,13 @@
   .team-mini-person span{ font-size:12.5px; letter-spacing:.04em; color:var(--charcoal); font-weight:500; }
 
   /* ============ TESTIMONIALS ============ */
-  .testimonials{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .testimonials{ background:var(--cream); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .stars-row{ display:flex; align-items:center; gap:14px; margin-bottom:10px; }
   .stars-row .stars{ color:var(--champagne); font-size:14px; letter-spacing:2px; }
   .t-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:32px; }
-  .t-card{ background:var(--cream); padding:36px 30px; border:1px solid var(--line); }
+  .t-card{ background:var(--surface); padding:36px 30px; border:1px solid var(--line); }
   .t-card .stars{ color:var(--champagne); font-size:12px; letter-spacing:2px; margin-bottom:18px; display:block; }
-  .t-card p{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.55; color:var(--ink); margin:0 0 24px; }
+  .t-card p{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.55; color:var(--white); margin:0 0 24px; }
   .t-name{ font-size:12px; font-weight:600; letter-spacing:.03em; }
   .t-loc{ font-size:11.5px; color:var(--charcoal); opacity:.6; margin-top:2px; }
   .t-source{
@@ -600,7 +601,7 @@
   .contact-detail i{ color:var(--champagne); margin-top:3px; }
   .contact-detail .lab{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; opacity:.55; font-weight:600; }
   .contact-detail .val{ font-size:14.5px; margin-top:3px; }
-  .contact-form{ background:var(--white); border:1px solid var(--line); padding:44px; }
+  .contact-form{ background:rgba(255,255,255,.05); border:1px solid var(--line); padding:44px; }
   .contact-form .field{ margin-bottom:20px; }
   .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
 
@@ -729,7 +730,7 @@
   }
 
   /* ============ CREDIBILITY / AUTHORITY ============ */
-  .credibility{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:52px 0; }
+  .credibility{ background:var(--cream); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:52px 0; }
   .credibility-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
   .cred-item{ text-align:center; padding-left:26px; border-left:1px solid var(--line); }
   .cred-item:first-child{ border-left:none; padding-left:0; }
@@ -739,7 +740,7 @@
 
   /* ============ IDX / MLS SEARCH ============ */
   .idx-wrapper{
-    position:relative; width:100%; background:var(--white); border:1px solid var(--line);
+    position:relative; width:100%; background:var(--surface); border:1px solid var(--line);
     min-height:480px; margin-bottom:60px; overflow:hidden;
     display:flex; align-items:center; justify-content:center;
   }
@@ -976,7 +977,7 @@
           <span>Roya</span>
         </div>
         <div class="team-mini-person">
-          <img src="brian-headshot.png" alt="Brian" loading="lazy">
+          <img src="new_brian_black.jpeg" alt="Brian" loading="lazy">
           <span>Brian</span>
         </div>
       </div>
