@@ -46,7 +46,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
 
 <!-- Font Awesome (light use: icons for search UI, socials) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -66,6 +66,7 @@
 
     --serif: 'Cormorant Garamond', 'Times New Roman', serif;
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --display: 'Raleway', 'Inter', -apple-system, sans-serif;
 
     --container: 1240px;
     --pad: clamp(24px, 5vw, 80px);
@@ -276,7 +277,7 @@
   header.scrolled .header-inner{ padding-top:16px; padding-bottom:16px; }
 
   .wordmark{ display:flex; flex-direction:column; line-height:1; }
-  .wordmark .l1{ font-family:var(--serif); font-size:21px; letter-spacing:.02em; font-weight:600; white-space:nowrap; }
+  .wordmark .l1{ font-family:var(--display); font-size:19px; letter-spacing:.03em; font-weight:800; text-transform:uppercase; white-space:nowrap; }
   .wordmark .l2{ font-family:var(--sans); font-size:9.5px; letter-spacing:.32em; color:var(--champagne); font-weight:600; margin-top:5px; }
 
   nav.primary-nav{ display:flex; align-items:center; gap:40px; }
@@ -410,27 +411,46 @@
   .hero{
     position:relative;
     display:flex;
+    flex-direction:column;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-start;
     min-height:100vh;
-    padding:150px var(--pad) 90px;
+    padding:150px var(--pad) 0;
     background:
-      linear-gradient(180deg, rgba(20,18,16,.32) 0%, rgba(20,18,16,.5) 55%, rgba(20,18,16,.68) 100%),
-      url('hero-cover.jpg') center 18% / cover no-repeat,
-      #e7e7e5;
+      radial-gradient(120% 90% at 50% 8%, rgba(45,40,33,.55) 0%, rgba(12,12,11,0) 60%),
+      linear-gradient(180deg, #17140f 0%, #0c0c0b 62%, #0c0c0b 100%);
     overflow:hidden;
   }
+  .hero-figure{
+    position:absolute;
+    bottom:0;
+    height:44%;
+    width:auto;
+    object-fit:contain;
+    object-position:bottom;
+    z-index:1;
+    pointer-events:none;
+  }
+  .hero-figure-left{ left:1%; }
+  .hero-figure-right{ right:1%; }
   .hero-inner{ position:relative; z-index:2; text-align:center; width:100%; }
   .hero-copy{
     display:block; padding:0; max-width:680px; margin:0 auto; text-align:center;
   }
-  .hero-copy h1{ color:var(--white); text-shadow:0 2px 24px rgba(0,0,0,.4); }
+  .hero-copy h1{
+    color:var(--white); text-shadow:0 2px 24px rgba(0,0,0,.4);
+    font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.015em;
+  }
   .hero .eyebrow{ color:var(--white); text-shadow:0 1px 8px rgba(0,0,0,.5); }
   .hero .eyebrow::before{ background:var(--white); }
   .hero-sub{ color:rgba(255,255,255,.85); margin-left:auto; margin-right:auto; }
   .hero-ctas{ justify-content:center; }
+  @media (max-width:900px){
+    .hero-figure{ height:34%; }
+  }
   @media (max-width:680px){
-    .hero{ min-height:88vh; padding:120px var(--pad) 64px; background-position:center 12%; }
+    .hero{ min-height:100vh; padding:118px var(--pad) 0; }
+    .hero-figure{ height:26%; }
   }
 
   .field{ display:flex; flex-direction:column; gap:8px; }
@@ -657,11 +677,6 @@
   @media (max-width:900px){
     nav.primary-nav, .header-cta .btn{ display:none; }
     .hamburger{ display:flex; }
-    .hero{ grid-template-columns:1fr; min-height:auto; }
-    .hero-media{ order:-1; height:56vh; }
-    .hero-caption{ display:none; }
-    .hero-copy{ padding:52px var(--pad) 60px; max-width:none; }
-    .hero-badge{ max-width:none; }
     .split{ grid-template-columns:1fr; }
     section{ padding:80px 0; }
   }
@@ -693,9 +708,6 @@
     }
     .hero-media img{
       object-position:center 12%;
-    }
-    .hero-copy{
-      padding-top:46px;
     }
     .hero-copy h1{
       font-size:clamp(40px, 12vw, 56px);
@@ -810,11 +822,16 @@
 </div>
 
 <!-- ============ HERO ============ -->
-<!-- hero-cover.jpg: combined studio photo of Roya and Brian together, provided by Douglas
-     specifically to replace the separate new_hero.jpeg/brian-headshot.png duo, so the header can
-     float transparently over one full-bleed image -- matching the look of the Exude Luxury Group
-     site Roya referenced. -->
+<!-- Per Roya's request, moved away from the single combined photo back to two separate cutouts
+     flanking the headline (matching the Altman Brothers team-hero reference she sent).
+     roya-cutout.png: background removed from new_hero.jpeg's white-backdrop studio photo (simple
+     alpha-matte cutout, no retouching), matted onto the dark hero background.
+     brian-cutout.png: new_brian_black.jpeg (already a black backdrop) with just its top/inner
+     edges faded to transparent so its frame edge doesn't show as a hard rectangle against the
+     hero's gradient background -- no other editing. -->
 <section class="hero" id="home">
+  <img class="hero-figure hero-figure-left" src="roya-cutout.png" alt="Roya Sherif" loading="eager">
+  <img class="hero-figure hero-figure-right" src="brian-cutout.png" alt="Brian, Roya's business partner" loading="eager">
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Southern California Real Estate</span>
