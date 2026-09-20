@@ -557,18 +557,32 @@
   }
   .media-strip:hover .media-track-inner{ animation-play-state:paused; }
   .media-logo{
-    font-family:var(--sans); font-weight:700; font-size:20px; letter-spacing:.08em;
-    text-transform:uppercase; color:rgba(255,255,255,.5); white-space:nowrap; flex:none;
+    display:inline-flex; align-items:center;
+    color:rgba(255,255,255,.5); white-space:nowrap; flex:none;
     transition:color .25s var(--ease);
   }
   .media-logo:hover{ color:rgba(255,255,255,.85); }
+  /* Stylized, grayscale wordmark treatments evoking each outlet's look -- not a reproduction of
+     their actual logo artwork/branding. */
+  .media-logo.mk-kusi{
+    flex-direction:column; align-items:flex-start; line-height:1; gap:3px;
+    font-family:var(--sans);
+  }
+  .media-logo.mk-kusi .mk-main{ font-size:25px; font-weight:800; letter-spacing:.03em; }
+  .media-logo.mk-kusi .mk-sub{ font-size:10px; font-weight:600; letter-spacing:.42em; }
+  .media-logo.mk-fox{
+    font-family:var(--sans); font-size:24px; font-weight:800; font-style:italic;
+    letter-spacing:-.005em;
+  }
   @keyframes media-scroll{
     from{ transform:translateX(0); }
     to{ transform:translateX(-50%); }
   }
   @media (max-width:680px){
     .media-track-inner{ gap:52px; }
-    .media-logo{ font-size:15px; }
+    .media-logo.mk-kusi .mk-main{ font-size:19px; }
+    .media-logo.mk-kusi .mk-sub{ font-size:8px; letter-spacing:.32em; }
+    .media-logo.mk-fox{ font-size:18px; }
   }
 
   /* ============ TESTIMONIALS ============ */
@@ -1025,10 +1039,10 @@
   </div>
   <div class="media-track">
     <div class="media-track-inner">
-      <span class="media-logo">KUSI News</span>
-      <span class="media-logo">Fox News</span>
-      <span class="media-logo" aria-hidden="true">KUSI News</span>
-      <span class="media-logo" aria-hidden="true">Fox News</span>
+      <span class="media-logo mk-kusi"><span class="mk-main">KUSI</span><span class="mk-sub">NEWS</span></span>
+      <span class="media-logo mk-fox">FOX NEWS</span>
+      <span class="media-logo mk-kusi" aria-hidden="true"><span class="mk-main">KUSI</span><span class="mk-sub">NEWS</span></span>
+      <span class="media-logo mk-fox" aria-hidden="true">FOX NEWS</span>
     </div>
   </div>
 </section>
