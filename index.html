@@ -650,9 +650,9 @@
   /* ============ INSTAGRAM ============ */
   .ig-section{ background:var(--cream); }
   .ig-head{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:44px; }
-  .ig-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:6px; }
+  .ig-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:900px; margin:0 auto; }
   .ig-cell{
-    aspect-ratio:1; overflow:hidden; position:relative;
+    display:block; aspect-ratio:3/4; overflow:hidden; position:relative;
     background:linear-gradient(155deg,#2a2622,#6b5c48);
   }
   .ig-cell img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease); }
@@ -698,7 +698,7 @@
     .about-media{ max-width:420px; }
     .prop-grid{ grid-template-columns:repeat(2,1fr); }
     .areas-grid{ grid-template-columns:repeat(2,1fr); }
-    .ig-grid{ grid-template-columns:repeat(3,1fr); }
+    .ig-grid{ grid-template-columns:repeat(2,1fr); }
     .footer-top{ grid-template-columns:1fr 1fr; row-gap:44px; }
   }
 
@@ -713,7 +713,7 @@
     .prop-grid{ grid-template-columns:1fr; }
     .t-grid{ grid-template-columns:1fr; }
     .areas-grid{ grid-template-columns:1fr; }
-    .ig-grid{ grid-template-columns:repeat(3,1fr); }
+    .ig-grid{ grid-template-columns:repeat(2,1fr); }
     .footer-top{ grid-template-columns:1fr; }
     .grid-2{ grid-template-columns:1fr; }
     .cta-final{ padding:100px var(--pad); }
@@ -1101,17 +1101,15 @@
 </section>
 
 <!-- ============ SOCIAL / INSTAGRAM ============ -->
-<!-- Roya asked for a "We're Social" block like thealtmanbrothers.com's, showing her real, live
-     latest posts (not a screenshot / not stock photos standing in for her feed). A static
-     Netlify site can't pull that automatically on its own -- Instagram has no public no-login
-     feed embed. The two real ways to do it: (1) Meta's Graph API with a long-lived access token
-     generated from Roya's own Instagram Business/Creator account, refreshed periodically, or
-     (2) a third-party embed widget (SnapWidget, LightWidget, Elfsight, Behold, etc.) that she
-     connects her account to, which then hands us a small embed snippet. Both need her to
-     authorize the connection -- can't be done from our side. Until that's set up, this links
-     straight out to her real profile instead of showing placeholder images under her name. ----------
-     TODO once Roya picks an option: drop the real embed/grid markup in where the CTA button is
-     below. -->
+<!-- "We're Social" block styled after thealtmanbrothers.com's, per Roya's request. A live,
+     auto-updating grid of her actual latest posts isn't possible for Instagram on a static
+     Netlify site without her connecting an account (Meta Graph API token, or a third-party
+     widget like SnapWidget/LightWidget/Elfsight) -- see engagement notes / message to Roya.
+     (TikTok, if she has an account, DOES support a real no-login live "creator embed" --
+     open question, follow up separately.) For now, showing 4 real screenshots of her actual
+     posts (sent by Douglas 2026-09-20) as a representative, manually-updated grid -- these are
+     genuine posts of hers, not stock photos. Swap these 4 files for newer ones periodically,
+     or replace this whole grid with a live embed once Roya picks an option. -->
 <section class="ig-section">
   <div class="wrap">
     <div class="ig-head reveal" style="flex-direction:column; text-align:center; justify-content:center;">
@@ -1121,7 +1119,16 @@
       <div style="display:flex; gap:14px; justify-content:center; margin-top:26px;">
         <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" aria-label="Instagram" class="ig-social-icon"><i class="fa-brands fa-instagram"></i></a>
       </div>
-      <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:30px;">@royasellssocal</a>
+      <span class="eyebrow" style="justify-content:center; margin-top:28px;">@royasellssocal</span>
+    </div>
+    <div class="ig-grid reveal">
+      <a class="ig-cell" href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener"><img src="ig-post-roses.jpg" alt="Roya Sherif Instagram post" loading="lazy"></a>
+      <a class="ig-cell" href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener"><img src="ig-post-quote-1m.jpg" alt="Roya Sherif Instagram post" loading="lazy"></a>
+      <a class="ig-cell" href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener"><img src="ig-post-quote-waiting.jpg" alt="Roya Sherif Instagram post" loading="lazy"></a>
+      <a class="ig-cell" href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener"><img src="ig-post-listed-marketed.jpg" alt="Roya Sherif Instagram post" loading="lazy"></a>
+    </div>
+    <div style="text-align:center; margin-top:34px;">
+      <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" class="btn btn-outline">Follow Roya</a>
     </div>
   </div>
 </section>
