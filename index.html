@@ -260,14 +260,9 @@
   /* ============ HEADER ============ */
   header{
     position:fixed; top:0; left:0; right:0; z-index:1000;
-    background:transparent;
+    background:#000;
     border-bottom:0;
-    transition:background .4s var(--ease), border-color .4s var(--ease), padding .4s var(--ease);
-  }
-  header.scrolled{
-    background:rgba(10,9,8,0.86);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+    transition:padding .4s var(--ease);
   }
   .header-inner{
     display:flex; align-items:center; justify-content:space-between;
@@ -278,7 +273,7 @@
 
   .wordmark{ display:flex; flex-direction:column; line-height:1; }
   .wordmark .l1{ font-family:var(--display); font-size:19px; letter-spacing:.03em; font-weight:800; text-transform:uppercase; white-space:nowrap; }
-  .wordmark .l2{ font-family:var(--sans); font-size:9.5px; letter-spacing:.32em; color:var(--champagne); font-weight:600; margin-top:5px; }
+  .wordmark .l2{ font-family:var(--sans); font-size:9.5px; letter-spacing:.14em; color:var(--champagne); font-weight:600; margin-top:5px; white-space:nowrap; }
 
   nav.primary-nav{ display:flex; align-items:center; gap:40px; }
   nav.primary-nav a{
@@ -301,27 +296,6 @@
   .hamburger.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
   .hamburger.open span:nth-child(2){ opacity:0; }
   .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
-
-  /* Before scrolling, the header floats transparently over the Hero photo --
-     keep wordmark, nav links and hamburger white so they stay legible over
-     it. Once scrolled past the Hero, the header gets its solid white
-     background and everything reverts to the dark palette. */
-  header:not(.scrolled) .wordmark .l1,
-  header:not(.scrolled) .wordmark .l2{
-    color:var(--white);
-    text-shadow:0 1px 10px rgba(0,0,0,.55);
-  }
-  header:not(.scrolled) nav.primary-nav a{
-    color:var(--white);
-    text-shadow:0 1px 8px rgba(0,0,0,.5);
-  }
-  header:not(.scrolled) nav.primary-nav a::after{
-    background:var(--white);
-  }
-  header:not(.scrolled) .hamburger span{
-    background:var(--white);
-    box-shadow:0 1px 6px rgba(0,0,0,.45);
-  }
 
   .mobile-nav{
     position:fixed; inset:0; background:var(--cream); z-index:1100;
@@ -785,7 +759,7 @@
   <div class="wrap header-inner">
     <a href="#home" class="wordmark" aria-label="Roya & Brian Group — Home">
       <span class="l1">Roya &amp; Brian</span>
-      <span class="l2">GROUP</span>
+      <span class="l2">REAL ESTATE GROUP</span>
     </a>
 
     <nav class="primary-nav" aria-label="Primary">
@@ -1331,7 +1305,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="wordmark"><span class="l1">Roya &amp; Brian</span><span class="l2">GROUP</span></div>
+        <div class="wordmark"><span class="l1">Roya &amp; Brian</span><span class="l2">REAL ESTATE GROUP</span></div>
         <p>Southern California real estate — helping buyers and sellers move with clarity, strategy and confidence.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
