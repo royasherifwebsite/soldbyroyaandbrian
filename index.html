@@ -538,6 +538,39 @@
   }
   .team-mini-person span{ font-size:12.5px; letter-spacing:.04em; color:var(--charcoal); font-weight:500; }
 
+  /* ============ MEDIA STRIP (rotating local news outlets) ============ */
+  /* Only outlets Roya has actually confirmed go here -- currently KUSI News and Fox News.
+     Do not add more logos to this strip without her confirming the outlet, since this format
+     reads as "as seen in" media coverage. */
+  .media-strip{
+    background:var(--surface);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:34px 0;
+    overflow:hidden;
+  }
+  .media-strip .eyebrow{ justify-content:center; margin-bottom:22px; color:var(--charcoal); }
+  .media-track{ overflow:hidden; width:100%; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .media-track-inner{
+    display:flex; align-items:center; gap:90px; width:max-content;
+    animation:media-scroll 18s linear infinite;
+  }
+  .media-strip:hover .media-track-inner{ animation-play-state:paused; }
+  .media-logo{
+    font-family:var(--sans); font-weight:700; font-size:20px; letter-spacing:.08em;
+    text-transform:uppercase; color:rgba(255,255,255,.5); white-space:nowrap; flex:none;
+    transition:color .25s var(--ease);
+  }
+  .media-logo:hover{ color:rgba(255,255,255,.85); }
+  @keyframes media-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (max-width:680px){
+    .media-track-inner{ gap:52px; }
+    .media-logo{ font-size:15px; }
+  }
+
   /* ============ TESTIMONIALS ============ */
   .testimonials{ background:var(--cream); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .stars-row{ display:flex; align-items:center; gap:14px; margin-bottom:10px; }
@@ -978,6 +1011,24 @@
         <a href="#contact" class="btn btn-dark">Meet The Team</a>
         <a href="#contact" class="btn btn-outline">Book a Consultation</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCAL MEDIA STRIP ============ -->
+<!-- Outlets shown are limited to what Roya herself confirmed (KUSI News, Fox News). Do not add
+     more logos here without her confirming the outlet -- this banner format implies actual
+     press coverage, so it should never include outlets that haven't actually featured them. -->
+<section class="media-strip">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center;">As Seen In</span>
+  </div>
+  <div class="media-track">
+    <div class="media-track-inner">
+      <span class="media-logo">KUSI News</span>
+      <span class="media-logo">Fox News</span>
+      <span class="media-logo" aria-hidden="true">KUSI News</span>
+      <span class="media-logo" aria-hidden="true">Fox News</span>
     </div>
   </div>
 </section>
