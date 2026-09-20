@@ -667,12 +667,17 @@
   .ig-social-icon:hover{ background:var(--champagne); border-color:var(--champagne); }
 
   /* ============ MEET THE TEAM STRIP ============ */
-  .team-strip{ display:flex; background:var(--ink); }
-  .team-strip-item{ flex:1 1 0; min-width:0; display:flex; flex-direction:row; align-items:stretch; }
+  .team-strip{ background:var(--ink); padding:64px 0; }
+  .team-strip-inner{
+    max-width:var(--container); margin:0 auto; padding:0 var(--pad);
+    display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:100px;
+  }
+  .team-strip-item{ flex:0 1 420px; max-width:420px; min-width:0; display:flex; flex-direction:row; align-items:center; }
   .team-strip-item.mirror{ flex-direction:row-reverse; }
-  .team-strip-photo{ flex:0 0 170px; width:170px; min-height:190px; overflow:hidden; }
+  .team-strip-photo{ flex:0 0 150px; width:150px; height:180px; overflow:hidden; }
   .team-strip-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .team-strip-info{ flex:1 1 auto; min-width:0; padding:22px 30px; display:flex; flex-direction:column; justify-content:center; }
+  .team-strip-info{ flex:1 1 auto; min-width:0; padding:0 28px; }
+  .team-strip-item.mirror .team-strip-info{ text-align:right; }
   .team-strip-name{
     font-family:var(--sans); font-weight:800; font-size:19px; letter-spacing:.02em;
     text-transform:uppercase; color:var(--white);
@@ -680,14 +685,20 @@
   .team-strip-name .last{ color:var(--gold); font-weight:700; }
   .team-strip-dre{ font-family:var(--sans); font-size:12px; letter-spacing:.06em; color:var(--gold); font-weight:600; margin-top:8px; }
   .team-strip-social{ display:flex; gap:16px; margin-top:14px; }
+  .team-strip-item.mirror .team-strip-social{ justify-content:flex-end; }
   .team-strip-social a{ color:var(--gold); font-size:16px; transition:color .25s var(--ease); }
   .team-strip-social a:hover{ color:var(--white); }
   .team-strip-divider{ display:none; }
   @media (max-width:680px){
-    .team-strip{ flex-direction:column; }
-    .team-strip-item, .team-strip-item.mirror{ flex-direction:column; }
-    .team-strip-photo{ width:100%; height:220px; min-height:0; }
-    .team-strip-info{ padding:22px var(--pad); }
+    .team-strip{ padding:0; }
+    .team-strip-inner{ flex-direction:column; align-items:stretch; gap:0; padding:0; max-width:none; }
+    .team-strip-item, .team-strip-item.mirror{
+      flex:1 1 auto; flex-direction:row; max-width:none; width:100%; padding:20px var(--pad);
+    }
+    .team-strip-item.mirror .team-strip-info,
+    .team-strip-item.mirror .team-strip-social{ text-align:left; justify-content:flex-start; }
+    .team-strip-photo{ flex:0 0 120px; width:120px; height:140px; }
+    .team-strip-info{ padding:0 20px; }
     .team-strip-divider{ display:block; height:12px; background:var(--white); }
   }
 
@@ -1419,6 +1430,7 @@
      the Facebook icon is left out and the envelope icon scrolls to the Contact form instead of
      a mailto to an unconfirmed address. -->
 <section class="team-strip">
+  <div class="team-strip-inner">
   <div class="team-strip-item">
     <div class="team-strip-photo"><img src="roya-team.jpg" alt="Roya Sherif" loading="lazy"></div>
     <div class="team-strip-info">
@@ -1441,6 +1453,7 @@
         <a href="#contact" aria-label="Contact Brian"><i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
