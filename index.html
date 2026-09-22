@@ -620,12 +620,16 @@
 
   /* ============ CONTACT ============ */
   .contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; }
+  .contact-info{ text-align:center; }
   .contact-info h2{ font-size:clamp(30px,3.4vw,42px); margin-top:18px; }
-  .contact-info p{ font-size:15.5px; line-height:1.75; color:var(--charcoal); opacity:.8; margin:20px 0 34px; max-width:400px; }
-  .contact-detail{ display:flex; gap:14px; align-items:flex-start; margin-bottom:22px; }
-  .contact-detail i{ color:var(--champagne); margin-top:3px; }
-  .contact-detail .lab{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; opacity:.55; font-weight:600; }
-  .contact-detail .val{ font-size:14.5px; margin-top:3px; }
+  .contact-info p{ font-size:15.5px; line-height:1.75; color:var(--charcoal); opacity:.8; margin:20px auto 34px; max-width:400px; }
+  .contact-detail{ display:flex; flex-direction:column; align-items:center; gap:6px; margin-bottom:32px; }
+  .contact-detail:last-child{ margin-bottom:0; }
+  .contact-detail i{ color:var(--gold); font-size:17px; }
+  .contact-detail .lab{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; opacity:1; font-weight:700; color:var(--gold); }
+  .contact-detail .val{ font-size:15px; margin-top:2px; color:var(--white); }
+  .contact-detail .val a{ color:inherit; text-decoration:none; }
+  .contact-detail .val a:hover{ color:var(--champagne); }
   .contact-form{ background:rgba(255,255,255,.05); border:1px solid var(--line); padding:44px; }
   .contact-form .field{ margin-bottom:20px; }
   .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
@@ -1404,31 +1408,34 @@
 <section id="contact">
   <div class="wrap contact-grid">
     <div class="contact-info reveal">
-      <span class="eyebrow">Get In Touch</span>
+      <span class="eyebrow" style="justify-content:center;">Get In Touch</span>
       <h2>Let's Connect</h2>
       <p>Send a message below and Roya will follow up personally to talk through your goals.</p>
 
       <div class="contact-detail">
         <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-        <div>
-          <div class="lab">Serving</div>
-          <div class="val">San Diego &amp; Southern California</div>
-        </div>
+        <div class="lab">Serving</div>
+        <div class="val">San Diego &amp; Southern California</div>
+      </div>
+      <div class="contact-detail">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        <div class="lab">Roya&rsquo;s Phone</div>
+        <div class="val"><a href="tel:+18583532349">(858) 353-2349</a></div>
       </div>
       <div class="contact-detail">
         <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-        <div>
-          <div class="lab">Email</div>
-          <!-- Replace with Roya's confirmed business email -->
-          <div class="val">hello@royasellssocal.com</div>
-        </div>
+        <div class="lab">Roya&rsquo;s Email</div>
+        <div class="val"><a href="mailto:Roya@royasellssocal.com">Roya@royasellssocal.com</a></div>
+      </div>
+      <div class="contact-detail">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        <div class="lab">Brian&rsquo;s Email</div>
+        <div class="val"><a href="mailto:brian@briansellssocal.com">brian@briansellssocal.com</a></div>
       </div>
       <div class="contact-detail">
         <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-        <div>
-          <div class="lab">Instagram</div>
-          <div class="val"><a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener">@royasellssocal</a></div>
-        </div>
+        <div class="lab">Instagram</div>
+        <div class="val"><a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener">@royasellssocal</a></div>
       </div>
     </div>
 
