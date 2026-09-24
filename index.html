@@ -1241,16 +1241,15 @@
     </div>
 
     <!-- CRMLS IDX -- LIVE
-         Official CRMLS Matrix public IDX embed URL, sent directly by Roya from her CRMLS Matrix
-         account. Verified before embedding: loads Roya Sherif's live CRMLS search results (page
-         shows "All information courtesy of Roya Sherif" / "Sign up with Roya Sherif"), is
-         mobile-responsive on its own, and CRMLS does not send an X-Frame-Options or
-         frame-ancestors header that would block it being framed here (checked directly against
-         the live response headers on 2026-09-14). -->
+         Official CRMLS Matrix public IDX embed URL. This one is scoped to a San Diego map area
+         (created 2026-09-24 in Matrix's IDX Configuration under "Restrict searches to a
+         specified map area", tied to Brian's account -- page shows "All information courtesy of
+         Brian Thompson" / "Sign up with Brian Thompson"), replacing the earlier unscoped
+         425838bf embed. -->
     <div class="idx-wrapper reveal" id="idxWrapper">
       <iframe
-        src="https://matrix.crmls.org/Matrix/public/IDX.aspx?idx=425838bf"
-        title="Search current listings from Roya Sherif's CRMLS account"
+        src="https://matrix.crmls.org/Matrix/public/IDX.aspx?idx=df4c38eb"
+        title="Search current San Diego listings from Roya & Brian's CRMLS account"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
