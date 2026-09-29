@@ -278,8 +278,8 @@
   }
   header.scrolled .header-inner{ padding-top:16px; padding-bottom:16px; }
 
-  .wordmark{ display:flex; flex-direction:column; line-height:1; }
-  .wordmark .l1{ font-family:var(--display); font-size:19px; letter-spacing:.03em; font-weight:800; text-transform:uppercase; white-space:nowrap; color:var(--gold); }
+  .wordmark{ display:flex; flex-direction:column; line-height:1; max-width:250px; }
+  .wordmark .l1{ font-family:var(--display); font-size:13px; letter-spacing:.02em; font-weight:800; text-transform:uppercase; white-space:normal; line-height:1.25; color:var(--white); }
   .wordmark .l2{ font-family:var(--sans); font-size:9.5px; letter-spacing:.14em; color:var(--champagne); font-weight:600; margin-top:5px; white-space:nowrap; }
 
   nav.primary-nav{ display:flex; align-items:center; gap:40px; }
@@ -416,11 +416,12 @@
   .hero-figure-right{ right:1%; }
   .hero-inner{ position:relative; z-index:2; text-align:center; width:100%; }
   .hero-copy{
-    display:block; padding:0; max-width:680px; margin:0 auto; text-align:center;
+    display:block; padding:0; max-width:920px; margin:0 auto; text-align:center;
   }
   .hero-copy h1{
-    color:var(--gold); text-shadow:0 2px 24px rgba(0,0,0,.4);
+    color:var(--white); text-shadow:0 2px 24px rgba(0,0,0,.4);
     font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.015em;
+    font-size:clamp(28px, 4.6vw, 58px); line-height:1.2;
   }
   .hero .eyebrow{ color:var(--white); text-shadow:0 1px 8px rgba(0,0,0,.5); }
   .hero .eyebrow::before{ background:var(--white); }
@@ -555,7 +556,8 @@
     padding:34px 0;
     overflow:hidden;
   }
-  .media-strip .eyebrow{ justify-content:center; margin-bottom:22px; color:var(--charcoal); }
+  .media-strip .eyebrow{ justify-content:center; margin-bottom:22px; color:var(--white); background:#111; padding:9px 22px; border-radius:3px; font-size:14px; }
+  .media-strip .eyebrow::before{ display:none; }
   .media-track{ overflow:hidden; width:100%; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .media-track-inner{
     display:flex; align-items:center; gap:90px; width:max-content;
@@ -698,6 +700,7 @@
   /* ============ FOOTER ============ */
   footer{ background:var(--ink); color:rgba(255,255,255,.65); padding-top:90px; }
   .footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:50px; padding-bottom:70px; border-bottom:1px solid var(--line-light); }
+  .footer-brand .wordmark{ max-width:300px; }
   .footer-brand .wordmark .l1{ color:var(--white); }
   .footer-brand p{ font-size:13.5px; line-height:1.7; margin-top:18px; max-width:280px; opacity:.6; }
   .footer-social{ display:flex; gap:14px; margin-top:22px; }
@@ -705,6 +708,7 @@
   .footer-social a:hover{ background:var(--champagne); border-color:var(--champagne); color:var(--white); }
   .footer-col h4{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--white); margin-bottom:20px; font-weight:600; }
   .footer-col a{ display:block; font-size:14px; margin-bottom:12px; opacity:.65; transition:opacity .2s; }
+  .footer-remax-logo{ height:32px; width:auto; border-radius:4px; }
   .footer-col a:hover{ opacity:1; }
   .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding:30px 0; font-size:12px; flex-wrap:wrap; gap:10px; }
   .footer-bottom .legal{ display:flex; gap:24px; }
@@ -731,9 +735,11 @@
     .footer-top{ grid-template-columns:1fr 1fr; row-gap:44px; }
   }
 
-  @media (max-width:900px){
+  @media (max-width:1260px){
     nav.primary-nav, .header-cta .btn{ display:none; }
     .hamburger{ display:flex; }
+  }
+  @media (max-width:900px){
     .split{ grid-template-columns:1fr; }
     section{ padding:80px 0; }
   }
@@ -767,7 +773,8 @@
       object-position:center 12%;
     }
     .hero-copy h1{
-      font-size:clamp(40px, 12vw, 56px);
+      font-size:clamp(24px, 7.5vw, 34px);
+      line-height:1.25;
     }
     .hero-sub{
       font-size:15.5px;
@@ -804,6 +811,7 @@
   .cred-item{ text-align:center; padding-left:26px; border-left:1px solid var(--line); }
   .cred-item:first-child{ border-left:none; padding-left:0; }
   .cred-num{ display:block; font-family:var(--serif); font-size:25px; color:var(--champagne); margin-bottom:8px; }
+  .cred-remax-logo{ height:44px; width:auto; display:block; margin:0 auto 8px; border-radius:6px; }
   .cred-count{ font-variant-numeric:tabular-nums; }
   .cred-lab{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--charcoal); opacity:.75; font-weight:600; line-height:1.5; }
 
@@ -840,9 +848,8 @@
 <!-- ============ HEADER ============ -->
 <header id="siteHeader">
   <div class="wrap header-inner">
-    <a href="#home" class="wordmark" aria-label="Roya & Brian Group — Home">
-      <span class="l1">Roya &amp; Brian</span>
-      <span class="l2">REAL ESTATE GROUP</span>
+    <a href="#home" class="wordmark" aria-label="The Roya Sherif and Brian Thompson Group — Home">
+      <span class="l1">The Roya Sherif and Brian Thompson Group</span>
     </a>
 
     <nav class="primary-nav" aria-label="Primary">
@@ -892,20 +899,22 @@
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Southern California Real Estate</span>
-      <h1>Roya &amp; Brian Group</h1>
+      <h1>The Roya Sherif and Brian Thompson Group</h1>
       <p class="hero-sub">Helping buyers and sellers navigate Southern California real estate with confidence, strategy and personalized service.</p>
       <div class="hero-ctas">
         <a href="#listings" class="btn btn-dark">Search Homes</a>
-        <a href="#buy-sell" class="btn btn-outline-light">Sell With Us</a>
+        <a href="#valuation" class="btn btn-outline-light">Sell With Us</a>
+        <a href="#cash-offer" class="btn btn-outline-light">Get Multiple Cash Offers</a>
+        <a href="#buy-sell" class="btn btn-outline-light">Buy With Us</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ CASH OFFER CAPTURE ============ -->
-<section class="cash-offer">
+<section class="cash-offer" id="cash-offer">
   <div class="wrap cash-offer-inner reveal">
-    <span class="eyebrow">Free Cash Offer</span>
+    <span class="eyebrow">Get Multiple Cash Offers</span>
     <h2>Curious What Your Home<br>Is Worth In Cash?</h2>
     <p class="cash-offer-sub">Enter your address to start a fast, no-obligation cash offer estimate for your Southern California home &mdash; no showings, no repairs, no pressure.</p>
 
@@ -989,7 +998,7 @@
       <span class="cred-lab">Avg. Sold Over<br>Asking Price</span>
     </div>
     <div class="cred-item">
-      <span class="cred-num">RE/MAX**</span>
+      <img class="cred-remax-logo" src="remax-connections-logo.png" alt="RE/MAX Connections">
       <span class="cred-lab">Global Marketing<br>&amp; Reach</span>
     </div>
   </div>
@@ -1058,7 +1067,6 @@
       </div>
 
       <div class="about-ctas">
-        <a href="#contact" class="btn btn-dark">Meet The Team</a>
         <a href="#contact" class="btn btn-outline">Book a Consultation</a>
       </div>
     </div>
@@ -1274,7 +1282,7 @@
           <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80" alt="Modern single-story home with white exterior and desert landscaping in San Diego" loading="lazy">
         </div>
         <div class="prop-body">
-          <div class="prop-price">$899,900</div>
+          <div class="prop-price">$1,595,000</div>
           <div class="prop-loc">San Diego, CA</div>
           <div class="prop-specs">
             <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
@@ -1290,7 +1298,7 @@
           <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Contemporary ranch-style home with mountain views in Ramona" loading="lazy">
         </div>
         <div class="prop-body">
-          <div class="prop-price">$749,900</div>
+          <div class="prop-price">$1,750,000</div>
           <div class="prop-loc">Ramona, CA</div>
           <div class="prop-specs">
             <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
@@ -1306,7 +1314,7 @@
           <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=80" alt="Updated bungalow with mature landscaping in Escondido" loading="lazy">
         </div>
         <div class="prop-body">
-          <div class="prop-price">$599,000</div>
+          <div class="prop-price">$1,950,000</div>
           <div class="prop-loc">Escondido, CA</div>
           <div class="prop-specs">
             <span><i class="fa-solid fa-bed"></i> 2 Beds</span>
@@ -1428,6 +1436,11 @@
         <div class="val"><a href="tel:+18583532349">(858) 353-2349</a></div>
       </div>
       <div class="contact-detail">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        <div class="lab">Brian&rsquo;s Phone</div>
+        <div class="val"><a href="tel:+19497018576">(949) 701-8576</a></div>
+      </div>
+      <div class="contact-detail">
         <i class="fa-solid fa-envelope" aria-hidden="true"></i>
         <div class="lab">Roya&rsquo;s Email</div>
         <div class="val"><a href="mailto:Roya@royasellssocal.com">Roya@royasellssocal.com</a></div>
@@ -1531,7 +1544,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="wordmark"><span class="l1">Roya &amp; Brian</span><span class="l2">REAL ESTATE GROUP</span></div>
+        <div class="wordmark"><span class="l1">The Roya Sherif and Brian Thompson Group</span></div>
         <p>Southern California real estate — helping buyers and sellers move with clarity, strategy and confidence.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/royasellssocal/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -1556,7 +1569,7 @@
       <div class="footer-col">
         <h4>Brokerage</h4>
         <!-- Confirm current brokerage affiliation before launch -->
-        <a href="#" style="pointer-events:none; opacity:.6;">RE/MAX Connections</a>
+        <a href="#" style="pointer-events:none; display:inline-block;"><img src="remax-connections-logo.png" alt="RE/MAX Connections" class="footer-remax-logo"></a>
       </div>
     </div>
     <div class="footer-bottom">
