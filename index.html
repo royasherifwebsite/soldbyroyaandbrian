@@ -435,6 +435,63 @@
     .hero-figure{ height:26%; }
   }
 
+  /* Split hero (2026-10): copy on the left, combined photo of Roya & Brian on the
+     right. Overrides the centered full-bleed version above. */
+  .hero.hero-split{
+    justify-content:center;
+    padding:130px 0 60px;
+    background:
+      radial-gradient(60% 70% at 74% 50%, rgba(182,154,114,.16) 0%, rgba(12,12,11,0) 70%),
+      radial-gradient(120% 90% at 20% 0%, rgba(45,40,33,.5) 0%, rgba(12,12,11,0) 60%),
+      linear-gradient(180deg, #17140f 0%, #0c0c0b 70%, #0c0c0b 100%);
+  }
+  .hero-split .hero-inner{
+    display:grid;
+    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+    align-items:center;
+    gap:clamp(40px, 6vw, 96px);
+    text-align:left;
+  }
+  .hero-split .hero-copy{ max-width:600px; margin:0; text-align:left; }
+  .hero-split .hero-copy h1{ margin-top:22px; font-size:clamp(30px, 4.2vw, 56px); }
+  .hero-split .hero-sub{ margin:24px 0 36px; max-width:480px; }
+  .hero-split .hero-ctas{ justify-content:flex-start; margin-bottom:0; }
+  .hero-photo{
+    position:relative;
+    display:flex; justify-content:center; align-items:center;
+  }
+  .hero-photo img{
+    display:block;
+    width:auto; height:auto;
+    max-width:100%;
+    max-height:min(calc(100vh - 170px), 820px);
+    min-height:0;
+    /* Fade only the outer margins (lamps, floor, counter edges) into the background;
+       both people sit well inside the fully opaque area. */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 9%, #000 89%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 6%, #000 93%, transparent 100%);
+    -webkit-mask-composite:source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 9%, #000 89%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 6%, #000 93%, transparent 100%);
+    mask-composite:intersect;
+    filter:brightness(.94) contrast(1.03);
+  }
+  @media (max-width:900px){
+    .hero.hero-split{ min-height:0; padding:120px 0 40px; }
+    .hero-split .hero-inner{ grid-template-columns:1fr; gap:36px; }
+    .hero-split .hero-copy{ margin:0 auto; max-width:640px; text-align:center; }
+    .hero-split .hero-sub{ margin-left:auto; margin-right:auto; }
+    .hero-split .hero-ctas{ justify-content:center; }
+    .hero-photo img{ max-height:none; width:100%; max-width:440px; }
+  }
+  @media (max-width:680px){
+    .hero.hero-split{ padding:110px 0 28px; }
+    .hero-split .hero-copy h1{ font-size:clamp(24px, 7.5vw, 34px); }
+    .hero-photo img{ max-width:360px; }
+  }
+
   .field{ display:flex; flex-direction:column; gap:8px; }
   .field label{ font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--charcoal); opacity:.7; }
   .field input, .field select{
@@ -536,6 +593,32 @@
     padding:8px 14px; color:var(--charcoal);
   }
   .about-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* Landscape photo of Roya & Brian: shown uncropped, with the text column balanced beside it. */
+  .about-grid{ grid-template-columns:1.15fr .85fr; gap:60px; }
+  .about-media{ aspect-ratio:1299/867; }
+  .about-media img{ object-fit:contain; object-position:center; }
+  .about-copy h2{ font-size:clamp(30px, 3.2vw, 44px); }
+  .about-copy p{ margin:18px 0 10px; }
+  @media (max-width:1080px){
+    .about-grid{ grid-template-columns:1fr; gap:44px; }
+    .about-media{ max-width:720px; width:100%; margin:0 auto; aspect-ratio:1299/867 !important; }
+  }
+
+  /* Tighter text column so it sits level with the landscape photo on desktop. */
+  @media (min-width:1081px){
+    .about-grid{ grid-template-columns:1.2fr .8fr; gap:52px; }
+    .about-copy h2{ font-size:clamp(28px, 2.6vw, 38px); line-height:1.12; margin-top:14px; }
+    .about-copy p{ font-size:15px; line-height:1.65; margin:14px 0 8px; }
+    .about-copy .tags{ gap:8px; margin:16px 0 20px; }
+    .about-copy .tags span{ padding:6px 12px; font-size:10.5px; }
+    .about-copy .team-mini{ margin:0 0 20px; }
+    .about-copy .team-mini-person img{ width:40px; height:40px; }
+  }
+  @media (max-width:680px){
+    .about-copy h2{ font-size:clamp(26px, 7vw, 32px); }
+    .about-copy p{ font-size:15.5px; line-height:1.7; }
+  }
 
   .team-mini{ display:flex; gap:22px; align-items:center; margin:6px 0 30px; flex-wrap:wrap; }
   .team-mini-person{ display:flex; align-items:center; gap:10px; }
@@ -882,16 +965,10 @@
 </div>
 
 <!-- ============ HERO ============ -->
-<!-- Per Roya's request, moved away from the single combined photo back to two separate cutouts
-     flanking the headline (matching the Altman Brothers team-hero reference she sent).
-     roya-cutout.png: background removed from new_hero.jpeg's white-backdrop studio photo (simple
-     alpha-matte cutout, no retouching), matted onto the dark hero background.
-     brian-cutout.png: new_brian_black.jpeg (already a black backdrop) with just its top/inner
-     edges faded to transparent so its frame edge doesn't show as a hard rectangle against the
-     hero's gradient background -- no other editing. -->
-<section class="hero" id="home">
-  <img class="hero-figure hero-figure-left" src="roya-cutout.png" alt="Roya Sherif" loading="eager">
-  <img class="hero-figure hero-figure-right" src="brian-cutout.png" alt="Brian, Roya's business partner" loading="eager">
+<!-- Split hero: copy + buttons on the left, the combined standing photo of Roya & Brian
+     (hero-roya-brian.jpeg, the client-supplied image, unedited) on the right. Its edges are
+     faded into the dark background with a CSS mask only -- nobody is cropped. -->
+<section class="hero hero-split" id="home">
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Southern California Real Estate</span>
@@ -902,6 +979,9 @@
         <a href="#valuation" class="btn btn-outline-light">Sell With Us</a>
         <a href="#buy-sell" class="btn btn-outline-light">Buy With Us</a>
       </div>
+    </div>
+    <div class="hero-photo">
+      <img src="hero-roya-brian.jpeg" alt="Roya Sherif and Brian Thompson" width="867" height="1299" loading="eager" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -958,8 +1038,8 @@
 <section id="about">
   <div class="wrap about-grid">
     <div class="about-media reveal">
-      <!-- Roya professional photo -->
-      <img src="royasellssocalpfp.png" alt="Roya Sherif portrait" loading="lazy"
+      <!-- Roya & Brian seated together (client-supplied, unedited) -->
+      <img src="about-roya-brian.jpeg" alt="Brian Thompson and Roya Sherif seated together" width="1299" height="867" loading="lazy"
            onload="this.parentElement.querySelector('.fallback-mark').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-mark').style.display='flex';">
       <div class="fallback-mark" style="display:flex;">
         <i class="fa-solid fa-image" aria-hidden="true"></i>
