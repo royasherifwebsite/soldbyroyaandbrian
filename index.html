@@ -819,10 +819,7 @@
   .idx-wrapper{
     position:relative; width:100%; background:var(--surface); border:1px solid var(--line);
     min-height:480px; margin-bottom:60px; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
   }
-  .idx-wrapper iframe{ width:100%; height:100%; min-height:480px; border:0; display:block; }
-  .idx-wrapper iframe{ width:100%; height:900px; border:0; display:block; }
   .idx-placeholder{ text-align:center; max-width:460px; padding:60px 30px; }
   .idx-placeholder i{ font-size:30px; color:var(--champagne); margin-bottom:18px; display:block; }
   .idx-placeholder h3{ font-family:var(--serif); font-weight:500; font-size:26px; margin-bottom:14px; }
@@ -837,7 +834,6 @@
     .cred-item{ border-left:none; padding-left:0; border-top:1px solid var(--line); padding-top:22px; }
     .cred-item:first-child{ border-top:none; padding-top:0; }
     .idx-wrapper{ min-height:400px; margin-bottom:44px; }
-    .idx-wrapper iframe{ height:640px; }
     .idx-placeholder{ padding:44px 22px; }
   }
 
@@ -1182,19 +1178,10 @@
       <p>Search active listings across San Diego and Southern California, connected directly to the MLS.</p>
     </div>
 
-    <!-- CRMLS IDX -- LIVE
-         Official CRMLS Matrix public IDX embed URL. This one is scoped to a San Diego map area
-         (created 2026-09-24 in Matrix's IDX Configuration under "Restrict searches to a
-         specified map area", tied to Brian's account -- page shows "All information courtesy of
-         Brian Thompson" / "Sign up with Brian Thompson"), replacing the earlier unscoped
-         425838bf embed. -->
+    <!-- IDX Broker listings widget (widget 179490) -- replaces the earlier CRMLS Matrix iframe.
+         The script renders the widget in place, so it must stay inside this wrapper. -->
     <div class="idx-wrapper reveal" id="idxWrapper">
-      <iframe
-        src="https://matrix.crmls.org/Matrix/public/IDX.aspx?idx=df4c38eb"
-        title="Search current San Diego listings from Roya & Brian's CRMLS account"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-179490" src="//netlify.idxbroker.com/idx/widgets/179490"></script>
     </div>
 
     <div class="section-head reveal" style="margin-top:12px;">
